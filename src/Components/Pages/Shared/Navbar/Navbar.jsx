@@ -15,6 +15,8 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { Drawer } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
+// Import Logo
+import logo from "../../../../assets/logo.png";
 
 // navItems
 const routes = [
@@ -89,30 +91,23 @@ function Navbar() {
 
   return (
     <AppBar
-      sx={{ backgroundColor: "#1b1b1b", padding: "10px 0" }}
+      sx={{ backgroundColor: "#1b1b1b", padding: "15px 0" }}
       position="static"
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Large device logo section */}
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+          <Box className="hidden lg:flex items-center gap-2">
+            <img className="w-16" src={logo} alt="" />
+            <Typography
+              variant="h6"
+              sx={{
+                letterSpacing: ".1rem"
+              }}
+            >
+              <p className="font-extrabold"><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7b4397] to-[#dc2430]">LuxeLoom</span><br />Properties</p>
+            </Typography>
+          </Box>
 
           {/* Small device navItems */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -141,25 +136,20 @@ function Navbar() {
           </Box>
 
           {/* Small device logo section */}
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+          <Box className="w-full flex lg:hidden ">
+          <Box className="flex items-center gap-2">
+            <img className="w-14" src={logo} alt="" />
+            <Typography
+              sx={{
+                letterSpacing: ".1rem"
+              }}
+            >
+              <p className="font-semibold
+              "><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7b4397] to-[#dc2430]">LuxeLoom</span><br />Properties</p>
+            </Typography>
+          </Box>
+          </Box>
+          
 
           {/* Large device navItems */}
           <Box
@@ -178,7 +168,7 @@ function Navbar() {
                     isPending
                       ? "pending"
                       : isActive
-                      ? "text-red-800 font-semibold"
+                      ? "text-transparent bg-clip-text bg-gradient-to-r from-[#7b4397] to-[#dc2430] font-semibold"
                       : "px-8 font-semibold"
                   }
                 >
