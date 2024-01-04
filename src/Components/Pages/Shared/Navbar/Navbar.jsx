@@ -11,7 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { Drawer } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
@@ -92,7 +91,7 @@ function Navbar() {
   return (
     <AppBar
       sx={{ backgroundColor: "#1b1b1b", padding: "15px 0" }}
-      position="static"
+      position="fixed"
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
