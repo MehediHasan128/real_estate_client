@@ -18,6 +18,7 @@ import img5 from "../../../../assets/bannerSlider/slider5.jpg";
 // Swiper js
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Autoplay, Pagination, Navigation } from "swiper/modules";
+import SliderImage from "./SliderImage/SliderImage";
 
 const Banner = () => {
   return (
@@ -93,6 +94,7 @@ const Banner = () => {
           <Swiper
             className="w-[300px] lg:w-[400px] mySwiper"
             effect={"fade"}
+            speed={2000}
             autoplay={{
               delay: 3000,
               disableOnInteraction: true,
@@ -100,19 +102,19 @@ const Banner = () => {
             modules={[EffectFade, Autoplay, Pagination, Navigation]}
           >
             <SwiperSlide>
-              <img className="object-cover rounded-xl h-[450px] lg:h-[600px]" src={img1} alt="" />
+              <SliderImage img={img1} />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="object-cover rounded-xl h-[450px] lg:h-[600px]" src={img2} alt="" />
+              <SliderImage img={img2} />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="object-cover rounded-xl h-[450px] lg:h-[600px]" src={img3} alt="" />
+              <SliderImage img={img3} />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="object-cover rounded-xl h-[450px] lg:h-[600px]" src={img4} alt="" />
+              <SliderImage img={img4} />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="object-cover rounded-xl h-[450px] lg:h-[600px]" src={img5} alt="" />
+              <SliderImage img={img5} />
             </SwiperSlide>
           </Swiper>
         </Box>
