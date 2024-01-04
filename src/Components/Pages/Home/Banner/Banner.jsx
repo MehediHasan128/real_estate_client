@@ -19,6 +19,7 @@ import img5 from "../../../../assets/bannerSlider/slider5.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Autoplay, Pagination, Navigation } from "swiper/modules";
 import SliderImage from "./SliderImage/SliderImage";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -78,14 +79,16 @@ const Banner = () => {
                 <BookmarkIcon />
               </Typography>
             </motion.button>
-            <motion.button
-              className="bg-gradient-to-r from-[#7b4397] to-[#dc2430] p-[2px] flex items-center gap-2 rounded-xl"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              <div className="bg-black px-6 py-3 rounded-xl">Join Us</div>
-            </motion.button>
+            <Link to="/register">
+              <motion.button
+                className="bg-gradient-to-r from-[#7b4397] to-[#dc2430] p-[2px] flex items-center gap-2 rounded-xl"
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <div className="bg-black px-6 py-3 rounded-xl">Join Us</div>
+              </motion.button>
+            </Link>
           </Box>
         </Box>
 

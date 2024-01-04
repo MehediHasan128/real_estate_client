@@ -12,7 +12,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Drawer } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { motion } from "framer-motion";
 
 // Import Logo
 import logo from "../../../../assets/logo.png";
@@ -101,10 +102,16 @@ function Navbar() {
             <Typography
               variant="h6"
               sx={{
-                letterSpacing: ".1rem"
+                letterSpacing: ".1rem",
               }}
             >
-              <p className="font-extrabold"><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7b4397] to-[#dc2430]">LuxeLoom</span><br />Properties</p>
+              <p className="font-extrabold">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7b4397] to-[#dc2430]">
+                  LuxeLoom
+                </span>
+                <br />
+                Properties
+              </p>
             </Typography>
           </Box>
 
@@ -136,19 +143,26 @@ function Navbar() {
 
           {/* Small device logo section */}
           <Box className="w-full flex lg:hidden ">
-          <Box className="flex items-center gap-2">
-            <img className="w-14" src={logo} alt="" />
-            <Typography
-              sx={{
-                letterSpacing: ".1rem"
-              }}
-            >
-              <p className="font-semibold
-              "><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7b4397] to-[#dc2430]">LuxeLoom</span><br />Properties</p>
-            </Typography>
+            <Box className="flex items-center gap-2">
+              <img className="w-14" src={logo} alt="" />
+              <Typography
+                sx={{
+                  letterSpacing: ".1rem",
+                }}
+              >
+                <p
+                  className="font-semibold
+              "
+                >
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7b4397] to-[#dc2430]">
+                    LuxeLoom
+                  </span>
+                  <br />
+                  Properties
+                </p>
+              </Typography>
+            </Box>
           </Box>
-          </Box>
-          
 
           {/* Large device navItems */}
           <Box
@@ -167,8 +181,8 @@ function Navbar() {
                     isPending
                       ? "pending"
                       : isActive
-                      ? "text-transparent bg-clip-text bg-gradient-to-r from-[#7b4397] to-[#dc2430] font-semibold"
-                      : "px-8 font-semibold"
+                      ? "text-[#dc2430] px-5"
+                      : "px-5"
                   }
                 >
                   {route.routeElement}
@@ -178,7 +192,20 @@ function Navbar() {
           </Box>
 
           {/* Profile section */}
-          <Box sx={{ flexGrow: 0 }}>
+          <Box>
+            <Box>
+              <Link to="/login">
+                <motion.button
+                  className="bg-gradient-to-r from-[#7b4397] to-[#dc2430] p-[2px] flex items-center gap-2 rounded-xl"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  <div className="bg-[#1b1b1b] px-5 py-2 rounded-xl">Login</div>
+                </motion.button>
+              </Link>
+            </Box>
+            {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -206,6 +233,7 @@ function Navbar() {
                 </MenuItem>
               ))}
             </Menu>
+          </Box> */}
           </Box>
         </Toolbar>
       </Container>
