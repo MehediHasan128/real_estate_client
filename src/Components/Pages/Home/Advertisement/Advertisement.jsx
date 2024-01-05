@@ -15,6 +15,7 @@ import { MdVerified } from "react-icons/md";
 import HeadingText from "../../Shared/HeadingText/HeadingText";
 
 const Advertisement = () => {
+
   return (
     <div className="mb-24">
       <HeadingText heading1={'Latest'} heading2={'Properties'} subHeading={'Discover Your Dream Home Today! Explore our latest properties showcasing exquisite homes in prime locations. From modern apartments to luxurious estates, find the perfect property that matches your lifestyle.'} />
