@@ -3,14 +3,20 @@ import "./Register.css";
 import { Link } from "react-router-dom";
 
 // Import react icons
-import { FaRegUser, FaRegEyeSlash, FaRegEye, FaFacebookF, FaTwitter } from "react-icons/fa";
+import {
+  FaRegUser,
+  FaRegEyeSlash,
+  FaRegEye,
+  FaFacebookF,
+  FaTwitter,
+} from "react-icons/fa";
 import { MdOutlineMailOutline, MdOutlineLock } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 
 const Register = () => {
-
-    const [showPass, setShowPass] = useState(false);
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   return (
     <div className="registerBg">
@@ -19,16 +25,16 @@ const Register = () => {
           <Box className="w-full flex flex-col lg:flex-row mt-32 mb-10 lg:mb-0 lg:mt-24">
             <Box className="lg:w-[50%] bg-[#111111] rounded-t-lg lg:rounded-l-lg text-white flex justify-center items-center px-5 py-10 lg:py-0 bg-opacity-30 backdrop-blur-md">
               <div>
-                <Typography>
+                <Typography variant="h6">
                   <p>Welcome to</p>
                 </Typography>
-                <Typography variant="h3">
+                <Typography variant="h1">
                   <p className="text-transparent bg-clip-text bg-gradient-to-r from-[#70318f] to-[#f01f2d] font-semibold tracking-wider">
                     LuxeLoom
                   </p>
                 </Typography>
-                <Typography variant="body1">
-                  <p className="text-lg tracking-[0.96em]">Properties</p>
+                <Typography variant="h4">
+                  <p className="tracking-[0.96em]">Properties</p>
                 </Typography>
                 <Typography>
                   <p className="mt-2 lg:text-justify">
@@ -62,7 +68,7 @@ const Register = () => {
                 </Typography>
 
                 {/* refistration form */}
-                <Box className="mt-10 px-10">
+                <Box className="mt-10 px-5 lg:px-10">
                   <form className="space-y-3">
                     <div className="flex gap-5">
                       <Box>
@@ -129,15 +135,21 @@ const Register = () => {
                         </div>
                         <input
                           className="bg-gray-200 px-14 py-3 rounded-md w-full focus:outline-none"
-                          type={showPass? 'text' : 'password'}
+                          type={showPass ? "text" : "password"}
                           placeholder="Enter your password"
                         />
                         <div className="w-fit px-4 h-full absolute flex justify-center items-center top-0 right-0 rounded-r-md">
-                          {
-                            showPass ?
-                            <FaRegEyeSlash onClick={() => setShowPass(!showPass)} className="text-2xl cursor-pointer" /> :
-                            <FaRegEye onClick={() => setShowPass(!showPass)} className="text-2xl cursor-pointer" />
-                          }
+                          {showPass ? (
+                            <FaRegEyeSlash
+                              onClick={() => setShowPass(!showPass)}
+                              className="text-2xl cursor-pointer"
+                            />
+                          ) : (
+                            <FaRegEye
+                              onClick={() => setShowPass(!showPass)}
+                              className="text-2xl cursor-pointer"
+                            />
+                          )}
                         </div>
                       </div>
                     </Box>
@@ -153,40 +165,52 @@ const Register = () => {
                         </div>
                         <input
                           className="bg-gray-200 px-14 py-3 rounded-md w-full focus:outline-none"
-                          type={showPass? 'text' : 'password'}
+                          type={showConfirmPass ? "text" : "password"}
                           placeholder="Confirm your password"
                         />
                         <div className="w-fit px-4 h-full absolute flex justify-center items-center top-0 right-0 rounded-r-md">
-                          {
-                            showPass ?
-                            <FaRegEyeSlash onClick={() => setShowPass(!showPass)} className="text-2xl cursor-pointer" /> :
-                            <FaRegEye onClick={() => setShowPass(!showPass)} className="text-2xl cursor-pointer" />
-                          }
+                          {showConfirmPass ? (
+                            <FaRegEyeSlash
+                              onClick={() => setShowConfirmPass(!showConfirmPass)}
+                              className="text-2xl cursor-pointer"
+                            />
+                          ) : (
+                            <FaRegEye
+                              onClick={() => setShowConfirmPass(!showConfirmPass)}
+                              className="text-2xl cursor-pointer"
+                            />
+                          )}
                         </div>
                       </div>
                     </Box>
                     <Box>
-                        <input className="px-5 py-3 w-full bg-[#1b1b1b] rounded-md text-white mt-5" type="submit" value="Register" />
+                      <input
+                        className="px-5 py-3 w-full bg-[#1b1b1b] rounded-md text-white mt-5"
+                        type="submit"
+                        value="Register"
+                      />
                     </Box>
                   </form>
-                <div className="my-10"><Divider>OR</Divider></div>
-                <Box className="w-fit mx-auto">
+                  <div className="my-5 lg:my-10">
+                    <Divider>OR</Divider>
+                  </div>
+                  <Box className="w-fit mx-auto">
                     <Typography variant="h6">
-                        <p className="text-center">Register With</p>
+                      <p className="text-center">Register With</p>
                     </Typography>
 
                     <Box className="flex gap-4 mt-3">
-                        <div className="bg-slate-200 w-fit p-3 rounded-full">
-                           <FcGoogle className="text-3xl" /> 
-                        </div>
-                        <div className="bg-slate-200 w-fit p-3 rounded-full">
-                           <FaFacebookF className="text-3xl text-blue-600" /> 
-                        </div>
-                        <div className="bg-slate-200 w-fit p-3 rounded-full">
-                           <FaTwitter className="text-3xl text-blue-600" /> 
-                        </div>
+                      <div className="bg-slate-200 w-fit p-3 rounded-full cursor-pointer">
+                        <FcGoogle className="text-3xl" />
+                      </div>
+                      <div className="bg-slate-200 w-fit p-3 rounded-full cursor-pointer">
+                        <FaFacebookF className="text-3xl text-blue-600" />
+                      </div>
+                      <div className="bg-slate-200 w-fit p-3 rounded-full cursor-pointer">
+                        <FaTwitter className="text-3xl text-blue-600" />
+                      </div>
                     </Box>
-                </Box>
+                  </Box>
                 </Box>
               </Box>
             </Box>

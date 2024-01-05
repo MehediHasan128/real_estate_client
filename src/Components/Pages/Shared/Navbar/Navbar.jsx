@@ -90,7 +90,8 @@ function Navbar() {
   );
 
   return (
-    <AppBar
+    <Box>
+      <AppBar
       sx={{ backgroundColor: "#1b1b1b", padding: "15px 0" }}
       position="fixed"
     >
@@ -238,6 +239,7 @@ function Navbar() {
         </Toolbar>
       </Container>
     </AppBar>
+    </Box>
   );
 }
 export default Navbar;
