@@ -25,8 +25,12 @@ const routes = [
     routeElement: "Home",
   },
   {
-    pathName: "/about",
-    routeElement: "About",
+    pathName: "/allProperties",
+    routeElement: "All Properties",
+  },
+  {
+    pathName: "/dashBoard",
+    routeElement: "Dash Board",
   },
 ];
 
