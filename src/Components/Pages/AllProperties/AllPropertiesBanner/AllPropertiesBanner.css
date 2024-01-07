@@ -1,5 +1,5 @@
 .allPropertiesBanner{
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url(../../../../assets/AllPropertiesImage/propertiesBanner.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url(../../../../assets/AllPropertiesImage/propertiesBanner.jpg);
     background-size: cover;
     background-position: center;
 }
