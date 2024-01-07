@@ -3,15 +3,10 @@ import { Box, Container, Divider, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 // Import react icons
-import {
-  FaRegEyeSlash,
-  FaRegEye,
-  FaFacebookF,
-  FaTwitter,
-} from "react-icons/fa";
+import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { MdOutlineMailOutline, MdOutlineLock } from "react-icons/md";
-import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
+import SocialAuthentication from "../GmailAuthentication/SocialAuthentication";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
@@ -132,15 +127,7 @@ const Login = () => {
                     </Typography>
 
                     <Box className="flex gap-4 mt-3">
-                      <div className="bg-slate-200 w-fit p-3 rounded-full cursor-pointer">
-                        <FcGoogle className="text-3xl" />
-                      </div>
-                      <div className="bg-slate-200 w-fit p-3 rounded-full cursor-pointer">
-                        <FaFacebookF className="text-3xl text-blue-600" />
-                      </div>
-                      <div className="bg-slate-200 w-fit p-3 rounded-full cursor-pointer">
-                        <FaTwitter className="text-3xl text-blue-600" />
-                      </div>
+                      <SocialAuthentication />
                     </Box>
                   </Box>
                 </Box>

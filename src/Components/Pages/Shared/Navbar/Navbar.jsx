@@ -11,7 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import PersonAdd from "@mui/icons-material/PersonAdd";
@@ -101,7 +100,12 @@ function Navbar() {
     </Box>
   );
 
-  const { user } = useAuthProvider();
+  const { user, userLogout } = useAuthProvider();
+
+  // User logout function
+  const logoutUser = () =>{
+    userLogout()
+  }
 
   return (
     <Box>
@@ -210,6 +214,9 @@ function Navbar() {
             <Box>
               <Box>
                 {user ? (
+
+
+                  // User account settings
                   <>
                     <Box sx={{ flexGrow: 0 }}>
                       <Tooltip title="Account settings">
@@ -284,7 +291,10 @@ function Navbar() {
                           </ListItemIcon>
                           Settings
                         </MenuItem>
-                        <MenuItem onClick={handleClose}>
+                        <MenuItem onClick={() =>{
+                          handleClose()
+                          logoutUser()
+                        }}>
                           <ListItemIcon>
                             <Logout fontSize="small" />
                           </ListItemIcon>
@@ -294,6 +304,8 @@ function Navbar() {
                     </Box>
                   </>
                 ) : (
+
+                  // Login button
                   <>
                     <Link to="/login">
                       <motion.button

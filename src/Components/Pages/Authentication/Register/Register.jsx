@@ -6,36 +6,49 @@ import { Link } from "react-router-dom";
 import {
   FaRegUser,
   FaRegEyeSlash,
-  FaRegEye,
-  FaFacebookF,
-  FaTwitter,
+  FaRegEye
 } from "react-icons/fa";
 import { MdOutlineMailOutline, MdOutlineLock } from "react-icons/md";
-import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuthProvider from "../../../Hooks/useAuthProvider";
+import Swal from "sweetalert2";
+import SocialAuthentication from "../GmailAuthentication/SocialAuthentication";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
-  const {user, loading, createUser} = useAuthProvider();
-  console.log(user);
+  const {loading, createUser} = useAuthProvider();
 
+  // Create a user and stored userInfo on dataBase
   const onSubmit = (data) => {
     const {role, firstName, lastName, email, password, confirmPassword} = data;
     const userRole = role;
     const userName = firstName + " " + lastName;
     const userEmail = email;
 
+    const userInfo = {userRole, userName, userEmail}
+
     if(password == confirmPassword){
       createUser(email, password)
       .then(userCredential =>{
         const user = userCredential.user;
-        
+        console.log(user);
+        if(user.accessToken){
+          Swal.fire({
+            icon: "success",
+            title: "Create your account successfully",
+            showConfirmButton: false,
+            timer: 1000
+          });
+        }
       })
     }
     else{
-      console.log('not match');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Password don't match",
+      });
     }
   };
 
@@ -98,7 +111,7 @@ const Register = () => {
                     <div>
                       <label>
                         <Typography variant="h6">
-                          <p>Join As:</p>
+                          <p>Join As</p>
                         </Typography>
                       </label>
                       <div className="flex gap-3">
@@ -130,7 +143,7 @@ const Register = () => {
                       <Box className="w-full">
                         <label>
                           <Typography variant="h6">
-                            <p>First Name:</p>
+                            <p>First Name</p>
                           </Typography>
                         </label>
                         <div className="w-full relative">
@@ -139,7 +152,7 @@ const Register = () => {
                           </div>
                           <input
                             {...register('firstName')}
-                            className="bg-gray-200 pl-14 py-3 rounded-md w-full focus:outline-none"
+                            className="pl-14 py-3 rounded-md w-full focus:outline-none"
                             type="text"
                             placeholder="First name"
                           />
@@ -148,7 +161,7 @@ const Register = () => {
                       <Box className="w-full">
                         <label>
                           <Typography variant="h6">
-                            <p>Last Name:</p>
+                            <p>Last Name</p>
                           </Typography>
                         </label>
                         <div className="w-full relative">
@@ -157,7 +170,7 @@ const Register = () => {
                           </div>
                           <input
                             {...register('lastName')}
-                            className="bg-gray-200 pl-14 py-3 rounded-md w-full focus:outline-none"
+                            className="pl-14 py-3 rounded-md w-full focus:outline-none"
                             type="text"
                             placeholder="Last name"
                           />
@@ -167,7 +180,7 @@ const Register = () => {
                     <Box>
                       <label>
                         <Typography variant="h6">
-                          <p>Email:</p>
+                          <p>Email</p>
                         </Typography>
                       </label>
                       <div className="w-full relative">
@@ -176,7 +189,7 @@ const Register = () => {
                         </div>
                         <input
                           {...register('email')}
-                          className="bg-gray-200 pl-14 py-3 rounded-md w-full focus:outline-none"
+                          className="pl-14 py-3 rounded-md w-full focus:outline-none"
                           type="email"
                           placeholder="Enter your email address"
                         />
@@ -185,7 +198,7 @@ const Register = () => {
                     <Box>
                       <label>
                         <Typography variant="h6">
-                          <p>Password:</p>
+                          <p>Password</p>
                         </Typography>
                       </label>
                       <div className="w-full relative">
@@ -194,7 +207,7 @@ const Register = () => {
                         </div>
                         <input
                           {...register('password')}
-                          className="bg-gray-200 px-14 py-3 rounded-md w-full focus:outline-none"
+                          className="px-14 py-3 rounded-md w-full focus:outline-none"
                           type={showPass ? "text" : "password"}
                           placeholder="Enter password"
                         />
@@ -216,7 +229,7 @@ const Register = () => {
                     <Box>
                       <label>
                         <Typography variant="h6">
-                          <p>Confirm Password:</p>
+                          <p>Confirm Password</p>
                         </Typography>
                       </label>
                       <div className="w-full relative">
@@ -225,7 +238,7 @@ const Register = () => {
                         </div>
                         <input
                           {...register('confirmPassword')}
-                          className="bg-gray-200 px-14 py-3 rounded-md w-full focus:outline-none"
+                          className="px-14 py-3 rounded-md w-full focus:outline-none"
                           type={showConfirmPass ? "text" : "password"}
                           placeholder="Confirm password"
                         />
@@ -249,8 +262,14 @@ const Register = () => {
                       </div>
                     </Box>
                     <Box className="relative">
-                    <span className="loading loading-spinner loading-md absolute bg-white h-full left-[30%] md:left-[40%] lg:left-[35%] top-[15%]"></span> 
-                    <input className="px-5 py-3 mt-5 bg-[#1b1b1b] w-full rounded-md text-white" type="submit" value="Register" />
+                      {
+                        loading ? 
+                        <>
+                          <span className="loading loading-spinner loading-md absolute bg-white h-full left-[30%] md:left-[40%] lg:left-[35%] top-[15%]"></span>
+                        </> : 
+                        <></>
+                      } 
+                    <input className="px-5 py-3 mt-5 cursor-pointer bg-[#1b1b1b] w-full rounded-md text-white" type="submit" value="Register" />
                     </Box>
                   </form>
                   <div className="my-5 lg:my-10">
@@ -262,15 +281,7 @@ const Register = () => {
                     </Typography>
 
                     <Box className="flex gap-4 mt-3">
-                      <div className="bg-slate-200 w-fit p-3 rounded-full cursor-pointer">
-                        <FcGoogle className="text-3xl" />
-                      </div>
-                      <div className="bg-slate-200 w-fit p-3 rounded-full cursor-pointer">
-                        <FaFacebookF className="text-3xl text-blue-600" />
-                      </div>
-                      <div className="bg-slate-200 w-fit p-3 rounded-full cursor-pointer">
-                        <FaTwitter className="text-3xl text-blue-600" />
-                      </div>
+                      <SocialAuthentication />
                     </Box>
                   </Box>
                 </Box>
