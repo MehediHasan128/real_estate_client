@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 const HeadingText = ({heading1, heading2, subHeading}) => {
     return (
         <div>
-            <Box className="my-20">
+            <Box className="my-10 md:my-20">
         <Box className="w-fit mx-auto mb-8">
           <Typography variant="h3">
             <p className="font-bold">
@@ -17,7 +17,7 @@ const HeadingText = ({heading1, heading2, subHeading}) => {
         </Box>
         <Box className="lg:w-[50%] mx-auto">
           <Typography variant="body1">
-            <p className="font-medium text-justify lg:text-center px-3 lg:px-0">
+            <p className="font-medium text-center lg:text-center px-3 md:px-10 lg:px-0">
               {subHeading}
             </p>
           </Typography>

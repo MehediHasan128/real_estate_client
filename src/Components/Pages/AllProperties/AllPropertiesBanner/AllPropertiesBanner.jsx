@@ -33,7 +33,7 @@ const AllPropertiesBanner = ({printNumber}) => {
                 placeholder="Search you dream"
               />
               <button className="absolute top-0 right-0 h-full rounded-r-full" type="submit">
-                <IoSearchOutline className="text-2xl border-l w-full h-[50%] px-6 lg:px-10" />
+                <IoSearchOutline className="text-3xl hover:text-blue-400 duration-500 border-l w-full px-6 lg:px-10" />
               </button>
             </div>
           </form>

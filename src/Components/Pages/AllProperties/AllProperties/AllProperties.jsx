@@ -61,7 +61,7 @@ const AllProperties = () => {
             </div>
             <div className="mt-3">
               <input
-                className="bg-blue-600 text-white font-semibold px-10 py-2 rounded-md w-72"
+                className="bg-blue-600 text-white font-semibold px-10 py-2 rounded-md w-36"
                 type="submit"
                 value="Filter"
               />
