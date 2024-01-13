@@ -48,7 +48,7 @@ const PropertyCard = ({img, location, title, price, description, bed, bath, size
                     <p className="font-medium">{title}</p>
                   </Typography>
                   <Typography variant="h6">
-                    <p className="my-3">${price}</p>
+                    <p className="my-3 text-blue-500">${price}</p>
                   </Typography>
                   <Typography variant="body2">
                     <p className="w-[95%]">

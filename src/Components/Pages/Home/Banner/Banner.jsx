@@ -68,17 +68,19 @@ const Banner = () => {
 
           {/* Button section */}
           <Box className="flex gap-8">
-            <motion.button
-              className="bg-gradient-to-r from-[#7b4397] to-[#dc2430] px-3 md:px-5 md:py-3 flex items-center gap-2 rounded-xl"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              <Typography variant="body1">
-                Book Now
-                <BookmarkIcon />
-              </Typography>
-            </motion.button>
+            <Link to="/allProperties">
+              <motion.button
+                className="bg-gradient-to-r from-[#7b4397] to-[#dc2430] px-3 md:px-5 md:py-3 flex items-center gap-2 rounded-xl"
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <Typography variant="body1">
+                  Book Now
+                  <BookmarkIcon />
+                </Typography>
+              </motion.button>
+            </Link>
             <Link to="/register">
               <motion.button
                 className="bg-gradient-to-r from-[#7b4397] to-[#dc2430] p-[2px] flex items-center gap-2 rounded-xl"
