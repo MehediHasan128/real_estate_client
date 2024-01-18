@@ -10,10 +10,12 @@ import { useForm } from "react-hook-form";
 import useAuthProvider from "../../../Hooks/useAuthProvider";
 import Swal from "sweetalert2";
 import SocialAuthentication from "../GmailAuthentication/SocialAuthentication";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
   const { loading, createUser } = useAuthProvider();
+  const axiosPublic = useAxiosPublic();
 
   // Create a user and stored userInfo on dataBase
   const onSubmit = (data) => {
@@ -28,13 +30,16 @@ const Register = () => {
     if (password == confirmPassword) {
       createUser(email, password).then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
         if (user.accessToken) {
-          Swal.fire({
-            icon: "success",
-            title: "Create your account successfully",
-            showConfirmButton: false,
-            timer: 1000,
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.acknowledged) {
+              Swal.fire({
+                icon: "success",
+                title: "Create your account successfully",
+                showConfirmButton: false,
+                timer: 1000,
+              });
+            }
           });
         }
       });
@@ -257,17 +262,21 @@ const Register = () => {
                       </div>
                     </Box>
                     <Box>
-                      {
-                        loading ? 
+                      {loading ? (
                         <>
                           <div className="flex justify-center px-5 py-3 mt-8 cursor-pointer bg-[#1b1b1b] w-full rounded-md text-white">
-                        <span className="loading loading-spinner loading-md bg-white"></span>
-                      </div>
-                        </> : 
-                        <>
-                          <input className="px-5 py-3 mt-5 cursor-pointer bg-[#1b1b1b] w-full rounded-md text-white" type="submit" value="Register" />
+                            <span className="loading loading-spinner loading-md bg-white"></span>
+                          </div>
                         </>
-                      }
+                      ) : (
+                        <>
+                          <input
+                            className="px-5 py-3 mt-5 cursor-pointer bg-[#1b1b1b] w-full rounded-md text-white"
+                            type="submit"
+                            value="Register"
+                          />
+                        </>
+                      )}
                     </Box>
                   </form>
                   <div className="my-5 lg:my-10">
