@@ -276,7 +276,9 @@ function Navbar() {
                         }}
                       >
                         <MenuItem onClick={handleClose}>
+                          <Link to='/myProfile' className="flex items-center gap-2">
                           <Avatar /> My account
+                          </Link>
                         </MenuItem>
                         <Divider />
                         <MenuItem onClick={handleClose}>

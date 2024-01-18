@@ -1,6 +1,6 @@
 import { Box, Container, Divider, Typography } from "@mui/material";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 // Import react icons
 import { FaRegUser, FaRegEyeSlash, FaRegEye } from "react-icons/fa";
@@ -16,6 +16,8 @@ const Register = () => {
   const { register, handleSubmit } = useForm();
   const { loading, createUser } = useAuthProvider();
   const axiosPublic = useAxiosPublic();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Create a user and stored userInfo on dataBase
   const onSubmit = (data) => {
@@ -33,6 +35,7 @@ const Register = () => {
         if (user.accessToken) {
           axiosPublic.post("/users", userInfo).then((res) => {
             if (res.data.acknowledged) {
+              navigate(loading?.state? location.state : '/')
               Swal.fire({
                 icon: "success",
                 title: "Create your account successfully",

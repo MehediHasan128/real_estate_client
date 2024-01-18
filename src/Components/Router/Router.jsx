@@ -6,6 +6,7 @@ import Register from "../Pages/Authentication/Register/Register";
 import Test from "../Test";
 import AllProperties from "../Pages/AllProperties/AllProperties/AllProperties";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import MyProfile from "../Pages/UserProfile/MyProfile/MyProfile";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: '/test',
                 element: <Test />
+            },
+            {
+                path: '/myProfile',
+                element: <MyProfile />
             }
         ]
     }

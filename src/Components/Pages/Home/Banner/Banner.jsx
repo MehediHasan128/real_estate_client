@@ -70,7 +70,7 @@ const Banner = () => {
           <Box className="flex gap-8">
             <Link to="/allProperties">
               <motion.button
-                className="bg-gradient-to-r from-[#7b4397] to-[#dc2430] px-3 md:px-5 md:py-3 flex items-center gap-2 rounded-xl"
+                className="bg-gradient-to-r from-[#7b4397] to-[#dc2430] px-3 md:px-5 py-3 flex items-center gap-2 rounded-xl"
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -88,7 +88,7 @@ const Banner = () => {
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <div className="bg-black px-6 py-3 rounded-xl">Join Us</div>
+                <div className="bg-black px-5 md:px-6 py-3 rounded-xl">Join Us</div>
               </motion.button>
             </Link>
           </Box>

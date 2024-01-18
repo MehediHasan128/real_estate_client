@@ -1,13 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Pages/Shared/Navbar/Navbar";
 import Footer from "../Pages/Shared/Footer/Footer";
 
 const Main = () => {
+
+    const location = useLocation();
+    const noHaderFooter = location.pathname.includes('myProfile')
+
     return (
         <div>
-            <Navbar />
+            {noHaderFooter || <Navbar />}
             <Outlet />
-            <Footer />
+            {noHaderFooter || <Footer />}
         </div>
     );
 };
