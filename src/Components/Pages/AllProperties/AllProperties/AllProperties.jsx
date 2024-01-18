@@ -19,8 +19,9 @@ const AllProperties = () => {
       <AllPropertiesBanner printNumber={printNumber} />
       <Box className="bg-gray-200 lg:px-10 py-12  rounded-md">
         <Container>
+          {/* Open the modal using document.getElementById('ID').showModal() method */}
           <form>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-5">
               <div>
                 <select className="select select-bordered w-full max-w-xs focus:outline-none">
                   <option disabled selected>
@@ -123,52 +124,52 @@ const AllProperties = () => {
             <>
               <Box className="space-y-3">
                 <HorizontalCard
-                img={img}
-                location={"Dhaka, Bangladesh"}
-                title={"Luxury House in Greenville"}
-                price={"860,000"}
-                description={
-                  "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-                }
-                bed={6}
-                bath={5}
-                size={190}
-                ownerImg={
-                  "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
-                }
-                ownerName={"Mehedi Hasan"}
+                  img={img}
+                  location={"Dhaka, Bangladesh"}
+                  title={"Luxury House in Greenville"}
+                  price={"860,000"}
+                  description={
+                    "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
+                  }
+                  bed={6}
+                  bath={5}
+                  size={190}
+                  ownerImg={
+                    "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
+                  }
+                  ownerName={"Mehedi Hasan"}
                 />
                 <HorizontalCard
-                img={img}
-                location={"Dhaka, Bangladesh"}
-                title={"Luxury House in Greenville"}
-                price={"860,000"}
-                description={
-                  "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-                }
-                bed={6}
-                bath={5}
-                size={190}
-                ownerImg={
-                  "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
-                }
-                ownerName={"Mehedi Hasan"}
+                  img={img}
+                  location={"Dhaka, Bangladesh"}
+                  title={"Luxury House in Greenville"}
+                  price={"860,000"}
+                  description={
+                    "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
+                  }
+                  bed={6}
+                  bath={5}
+                  size={190}
+                  ownerImg={
+                    "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
+                  }
+                  ownerName={"Mehedi Hasan"}
                 />
                 <HorizontalCard
-                img={img}
-                location={"Dhaka, Bangladesh"}
-                title={"Luxury House in Greenville"}
-                price={"860,000"}
-                description={
-                  "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-                }
-                bed={6}
-                bath={5}
-                size={190}
-                ownerImg={
-                  "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
-                }
-                ownerName={"Mehedi Hasan"}
+                  img={img}
+                  location={"Dhaka, Bangladesh"}
+                  title={"Luxury House in Greenville"}
+                  price={"860,000"}
+                  description={
+                    "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
+                  }
+                  bed={6}
+                  bath={5}
+                  size={190}
+                  ownerImg={
+                    "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
+                  }
+                  ownerName={"Mehedi Hasan"}
                 />
               </Box>
             </>

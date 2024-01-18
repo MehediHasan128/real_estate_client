@@ -3,11 +3,7 @@ import "./Register.css";
 import { Link } from "react-router-dom";
 
 // Import react icons
-import {
-  FaRegUser,
-  FaRegEyeSlash,
-  FaRegEye
-} from "react-icons/fa";
+import { FaRegUser, FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { MdOutlineMailOutline, MdOutlineLock } from "react-icons/md";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -17,33 +13,32 @@ import SocialAuthentication from "../GmailAuthentication/SocialAuthentication";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
-  const {loading, createUser} = useAuthProvider();
+  const { loading, createUser } = useAuthProvider();
 
   // Create a user and stored userInfo on dataBase
   const onSubmit = (data) => {
-    const {role, firstName, lastName, email, password, confirmPassword} = data;
+    const { role, firstName, lastName, email, password, confirmPassword } =
+      data;
     const userRole = role;
     const userName = firstName + " " + lastName;
     const userEmail = email;
 
-    const userInfo = {userRole, userName, userEmail}
+    const userInfo = { userRole, userName, userEmail };
 
-    if(password == confirmPassword){
-      createUser(email, password)
-      .then(userCredential =>{
+    if (password == confirmPassword) {
+      createUser(email, password).then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        if(user.accessToken){
+        if (user.accessToken) {
           Swal.fire({
             icon: "success",
             title: "Create your account successfully",
             showConfirmButton: false,
-            timer: 1000
+            timer: 1000,
           });
         }
-      })
-    }
-    else{
+      });
+    } else {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -108,7 +103,7 @@ const Register = () => {
                 {/* refistration form */}
                 <Box className="mt-5 px-5 lg:px-10">
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-                    <div>
+                    <Box>
                       <label>
                         <Typography variant="h6">
                           <p>Join As</p>
@@ -138,8 +133,8 @@ const Register = () => {
                           </Typography>
                         </label>
                       </div>
-                    </div>
-                    <div className="flex gap-5">
+                    </Box>
+                    <Box className="flex gap-5">
                       <Box className="w-full">
                         <label>
                           <Typography variant="h6">
@@ -151,7 +146,7 @@ const Register = () => {
                             <FaRegUser className="text-xl" />
                           </div>
                           <input
-                            {...register('firstName')}
+                            {...register("firstName")}
                             className="pl-14 py-3 rounded-md w-full focus:outline-none"
                             type="text"
                             placeholder="First name"
@@ -169,14 +164,14 @@ const Register = () => {
                             <FaRegUser className="text-xl" />
                           </div>
                           <input
-                            {...register('lastName')}
+                            {...register("lastName")}
                             className="pl-14 py-3 rounded-md w-full focus:outline-none"
                             type="text"
                             placeholder="Last name"
                           />
                         </div>
                       </Box>
-                    </div>
+                    </Box>
                     <Box>
                       <label>
                         <Typography variant="h6">
@@ -188,7 +183,7 @@ const Register = () => {
                           <MdOutlineMailOutline className="text-2xl" />
                         </div>
                         <input
-                          {...register('email')}
+                          {...register("email")}
                           className="pl-14 py-3 rounded-md w-full focus:outline-none"
                           type="email"
                           placeholder="Enter your email address"
@@ -206,7 +201,7 @@ const Register = () => {
                           <MdOutlineLock className="text-2xl" />
                         </div>
                         <input
-                          {...register('password')}
+                          {...register("password")}
                           className="px-14 py-3 rounded-md w-full focus:outline-none"
                           type={showPass ? "text" : "password"}
                           placeholder="Enter password"
@@ -237,7 +232,7 @@ const Register = () => {
                           <MdOutlineLock className="text-2xl" />
                         </div>
                         <input
-                          {...register('confirmPassword')}
+                          {...register("confirmPassword")}
                           className="px-14 py-3 rounded-md w-full focus:outline-none"
                           type={showConfirmPass ? "text" : "password"}
                           placeholder="Confirm password"
@@ -261,15 +256,18 @@ const Register = () => {
                         </div>
                       </div>
                     </Box>
-                    <Box className="relative">
+                    <Box>
                       {
                         loading ? 
                         <>
-                          <span className="loading loading-spinner loading-md absolute bg-white h-full left-[30%] md:left-[40%] lg:left-[35%] top-[15%]"></span>
+                          <div className="flex justify-center px-5 py-3 mt-8 cursor-pointer bg-[#1b1b1b] w-full rounded-md text-white">
+                        <span className="loading loading-spinner loading-md bg-white"></span>
+                      </div>
                         </> : 
-                        <></>
-                      } 
-                    <input className="px-5 py-3 mt-5 cursor-pointer bg-[#1b1b1b] w-full rounded-md text-white" type="submit" value="Register" />
+                        <>
+                          <input className="px-5 py-3 mt-5 cursor-pointer bg-[#1b1b1b] w-full rounded-md text-white" type="submit" value="Register" />
+                        </>
+                      }
                     </Box>
                   </form>
                   <div className="my-5 lg:my-10">
