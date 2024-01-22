@@ -1,4 +1,4 @@
-import { Avatar, Box, Divider, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 
 // React Icons
 import { MdManageAccounts, MdHistory } from "react-icons/md";
@@ -38,16 +38,13 @@ const LeftSideNav = () => {
   return (
     <>
       <Box className="bg-[#303030] min-h-screen">
-        <Box className="flex justify-center p-10 text-white">
+        <Box className="flex justify-center p-5 lg:p-10 text-white">
           <div className="w-full">
-            <Avatar
-              alt="Remy Sharp"
-              src="https://images.inc.com/uploaded_files/image/1920x1080/getty_481292845_77896.jpg"
-              sx={{
-                width: { sx: "20", lg: "180px" },
-                height: { sx: "20", lg: "180px" },
-              }}
-            />
+            <div className="avatar">
+              <div className="w-[110px] lg:w-36 rounded-full">
+                <img src="https://images.inc.com/uploaded_files/image/1920x1080/getty_481292845_77896.jpg" />
+              </div>
+            </div>
             <div className="my-5">
               <Typography variant="h6">
                 <p>Mehedi Hasan Bayzid</p>
