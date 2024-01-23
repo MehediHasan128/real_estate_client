@@ -1,9 +1,13 @@
-import { Box, Drawer } from "@mui/material";
+import {
+  Box,
+  Drawer,
+} from "@mui/material";
 import LeftSideNav from "../LeftSideNav/LeftSideNav";
 import Profile from "../Profile/Profile";
 import React from "react";
 
 import { IoMenu } from "react-icons/io5";
+
 
 const MyProfile = () => {
   const [state, setState] = React.useState({
@@ -23,7 +27,7 @@ const MyProfile = () => {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 0 }}
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 280 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
@@ -37,9 +41,7 @@ const MyProfile = () => {
       <div className="flex lg:hidden">
         {["left"].map((anchor) => (
           <React.Fragment key={anchor}>
-            <button onClick={toggleDrawer(anchor, true)}>
-              <IoMenu className="text-4xl" />
-            </button>
+            <button className="p-2" onClick={toggleDrawer(anchor, true)}><IoMenu className="text-4xl" /></button>
             <Drawer
               anchor={anchor}
               open={state[anchor]}
@@ -50,12 +52,12 @@ const MyProfile = () => {
           </React.Fragment>
         ))}
       </div>
-      <Box className="flex justify-center items-center min-h-screen">
-        <Box className="hidden lg:flex w-[20%] min-h-screen">
+      <Box className="flex justify-center bg-slate-100">
+        <Box className="hidden lg:flex w-[20%]">
           <LeftSideNav />
         </Box>
 
-        <Box className="w-[80%] min-h-screen">
+        <Box className="w-[100%] p-4 lg:p-3">
           <Profile />
         </Box>
       </Box>
