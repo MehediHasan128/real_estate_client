@@ -23,7 +23,7 @@ const Login = () => {
     userLogin(email, password)
     .then(res =>{
       if(res.user.accessToken){
-        navigate(loading?.state? location.state : '/')
+        navigate(location?.state ? location.state : '/')
       }
     })
   }

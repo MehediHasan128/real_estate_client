@@ -6,6 +6,7 @@ import { SlSizeFullscreen } from "react-icons/sl";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { Link } from "react-router-dom";
 
 const PropertyCard = ({img, location, title, price, description, bed, bath, size, ownerImg, ownerName}) => {
     return (
@@ -91,9 +92,11 @@ const PropertyCard = ({img, location, title, price, description, bed, bath, size
                       </Typography>
                     </Box>
                     <Box>
+                      <Link to='/propertyDetails'>
                       <button className="px-3 py-1 rounded-md bg-[#1b1b1b] text-white">
                         Details
                       </button>
+                      </Link>
                     </Box>
                   </div>
                 </div>
