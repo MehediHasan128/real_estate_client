@@ -24,7 +24,7 @@ const UserLayout = () => {
     
       const list = (anchor) => (
         <Box
-          sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 280 }}
+          sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 246 }}
           role="presentation"
           onClick={toggleDrawer(anchor, false)}
           onKeyDown={toggleDrawer(anchor, false)}
@@ -59,7 +59,7 @@ const UserLayout = () => {
           <LeftSideNav />
         </Box>
 
-        <Box className="w-[100%] p-4 lg:p-3">
+        <Box className="w-full p-4 lg:p-3">
           <Outlet />
         </Box>
       </Box>

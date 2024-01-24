@@ -1,15 +1,33 @@
 import { Box, Container, Divider, Typography } from "@mui/material";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 // Import react icons
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { MdOutlineMailOutline, MdOutlineLock } from "react-icons/md";
 import { useState } from "react";
 import SocialAuthentication from "../GmailAuthentication/SocialAuthentication";
+import useAuthProvider from "../../../Hooks/useAuthProvider";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {loading, userLogin} = useAuthProvider();
+  const {register, handleSubmit} = useForm();
   const [showPass, setShowPass] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+
+  const handelLogin = (data) =>{
+    const {email, password} = data;
+    userLogin(email, password)
+    .then(res =>{
+      if(res.user.accessToken){
+        navigate(loading?.state? location.state : '/')
+      }
+    })
+  }
+
 
   return (
     <div className="registerBg">
@@ -62,7 +80,7 @@ const Login = () => {
 
                 {/* refistration form */}
                 <Box className="mt-10 px-5 lg:px-10">
-                  <form className="space-y-3">
+                  <form onSubmit={handleSubmit(handelLogin)} className="space-y-3">
                     <Box>
                       <label>
                         <Typography variant="h6">
@@ -74,6 +92,7 @@ const Login = () => {
                           <MdOutlineMailOutline className="text-2xl" />
                         </div>
                         <input
+                        {...register('email')}
                           className="bg-gray-200 pl-14 py-3 rounded-md w-full focus:outline-none"
                           type="email"
                           placeholder="Enter your email address"
@@ -91,6 +110,7 @@ const Login = () => {
                           <MdOutlineLock className="text-2xl" />
                         </div>
                         <input
+                        {...register('password')}
                           className="bg-gray-200 px-14 py-3 rounded-md w-full focus:outline-none"
                           type={showPass ? "text" : "password"}
                           placeholder="Enter your password"
@@ -111,11 +131,21 @@ const Login = () => {
                       </div>
                     </Box>
                     <Box>
-                      <input
-                        className="px-5 py-3 w-full bg-[#1b1b1b] rounded-md text-white mt-5"
-                        type="submit"
-                        value="Login"
-                      />
+                    {loading ? (
+                        <>
+                          <div className="flex justify-center px-5 py-3 mt-8 cursor-pointer bg-[#1b1b1b] w-full rounded-md text-white">
+                            <span className="loading loading-spinner loading-md bg-white"></span>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <input
+                            className="px-5 py-3 mt-5 cursor-pointer bg-[#1b1b1b] w-full rounded-md text-white"
+                            type="submit"
+                            value="Login"
+                          />
+                        </>
+                      )}
                     </Box>
                   </form>
                   <div className="my-5 lg:my-10">

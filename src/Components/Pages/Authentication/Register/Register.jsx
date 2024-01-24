@@ -14,7 +14,7 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
-  const { loading, createUser } = useAuthProvider();
+  const { loading, createUser, setUserName } = useAuthProvider();
   const axiosPublic = useAxiosPublic();
   const location = useLocation();
   const navigate = useNavigate();
@@ -33,6 +33,7 @@ const Register = () => {
       createUser(email, password).then((userCredential) => {
         const user = userCredential.user;
         if (user.accessToken) {
+          setUserName(user, userName)
           axiosPublic.post("/users", userInfo).then((res) => {
             if (res.data.acknowledged) {
               navigate(loading?.state? location.state : '/')

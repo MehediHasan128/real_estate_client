@@ -8,6 +8,7 @@ import useAuthProvider from "../../../Hooks/useAuthProvider";
 const Profile = () => {
 
   const {user} = useAuthProvider();
+  console.log(user);
 
   return (
     <>
@@ -107,6 +108,7 @@ const Profile = () => {
                     </label>
                     <input
                       type="text"
+                      defaultValue={user?.displayName}
                       className="bg-slate-50 px-5 py-3 rounded-md w-full border focus:outline-none"
                     />
                   </div>

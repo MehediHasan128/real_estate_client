@@ -42,8 +42,7 @@ const accountSettings = [
 
 const LeftSideNav = () => {
   return (
-    <>
-      <Box className="bg-[#303030] min-h-screen">
+      <Box className="bg-[#303030] min-h-screen fixed">
         <Box className="flex justify-center p-5 lg:p-10 text-white">
           <div className="w-full">
             <div className="avatar">
@@ -118,7 +117,6 @@ const LeftSideNav = () => {
           </div>
         </Box>
       </Box>
-    </>
   );
 };
 

@@ -34,10 +34,17 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, provider);
     }
 
-    // Set user name or photoURL
+    // Set user photoURL
     const setUserProfileImage = (user, photo) =>{
         return updateProfile(user, {
             photoURL: photo
+        })
+    }
+
+    // Set User name
+    const setUserName = (user, name) =>{
+        return updateProfile(user, {
+            displayName: name
         })
     }
 
@@ -56,9 +63,10 @@ const AuthProvider = ({children}) => {
     const authInfo = {
         user,
         loading,
-        createUser,
         userLogin,
+        createUser,
         userLogout,
+        setUserName,
         setUserProfileImage,
         createUserAndLoginEithGmail
     }
