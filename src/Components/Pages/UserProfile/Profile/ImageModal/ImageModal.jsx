@@ -3,13 +3,15 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useAuthProvider from "../../../../Hooks/useAuthProvider";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 
 // Image hostion api
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const ImageModal = () => {
-  const { user } = useAuthProvider();
+  const { user, setUserProfileImage } = useAuthProvider();
+  const axiosPublic = useAxiosPublic();
   const userEmail = user?.email;
 
   const inputRef = useRef(null);
@@ -36,20 +38,21 @@ const ImageModal = () => {
     });
 
     if (res.data.data.display_url) {
-      const updatedItems = { userPhoto: res.data.data.display_url };
+      // Set userImage
+      setUserProfileImage(user, res.data.data.display_url)
 
-      axios
-        .patch(`http://localhost:5000/users/${userEmail}`, updatedItems)
-        .then((res) => {
-          if (res.data.modifiedCount == 1) {
-            Swal.fire({
-              icon: "success",
-              title: "Your work has been saved",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        });
+      // Set image url on database
+      const updatedItems = { userPhoto: res.data.data.display_url };
+      axiosPublic.patch(`/users/${userEmail}`, updatedItems).then((res) => {
+        if (res.data.modifiedCount == 1) {
+          Swal.fire({
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
     }
   };
 

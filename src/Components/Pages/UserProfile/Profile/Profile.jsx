@@ -3,8 +3,12 @@ import { Box, Divider, Typography } from "@mui/material";
 import { BiPencil } from "react-icons/bi";
 import { MdManageAccounts, MdOutlineClose } from "react-icons/md";
 import ImageModal from "./ImageModal/ImageModal";
+import useAuthProvider from "../../../Hooks/useAuthProvider";
 
 const Profile = () => {
+
+  const {user} = useAuthProvider();
+
   return (
     <>
       <Box className="bg-white min-h-screen p-10 rounded-lg shadow-2xl">
@@ -36,7 +40,7 @@ const Profile = () => {
           <div className="mt-10 flex items-center gap-5">
             <div className="avatar relative">
               <div className="w-24 rounded-xl">
-                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={user?.photoURL} />
               </div>
               <button
                 onClick={() =>

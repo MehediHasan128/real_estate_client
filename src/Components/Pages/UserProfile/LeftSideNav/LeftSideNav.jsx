@@ -5,30 +5,36 @@ import { MdManageAccounts, MdHistory } from "react-icons/md";
 import { FiActivity } from "react-icons/fi";
 import { IoLanguage, IoLibrarySharp, IoHomeOutline } from "react-icons/io5";
 import { IoMdStats, IoIosLogOut } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const accountSettings = [
   {
+    route: "/myProfile",
     icon: <MdManageAccounts className="text-3xl" />,
     title: "My Account",
   },
   {
+    route: "/activity",
     icon: <FiActivity className="text-3xl" />,
     title: "Activity",
   },
   {
+    route: "/language",
     icon: <IoLanguage className="text-3xl" />,
     title: "Language",
   },
   {
+    route: "/statistic",
     icon: <IoMdStats className="text-3xl" />,
     title: "Statistic",
   },
   {
+    route: "/library",
     icon: <IoLibrarySharp className="text-3xl" />,
     title: "Library",
   },
   {
+    route: "/history",
     icon: <MdHistory className="text-3xl" />,
     title: "History",
   },
@@ -69,9 +75,18 @@ const LeftSideNav = () => {
                   >
                     <div className="my-6 hover:scale-110 duration-500">
                       <Typography variant="body1">
-                        <p className="text-xl flex items-center gap-2">
+                        <NavLink
+                          to={settings.route}
+                          className={({ isActive, isPending }) =>
+                            isPending
+                              ? "pending"
+                              : isActive
+                              ? "text-blue-400 text-xl flex items-center gap-2"
+                              : "text-xl flex items-center gap-2"
+                          }
+                        >
                           {settings.icon} {settings.title}
-                        </p>
+                        </NavLink>
                       </Typography>
                     </div>
                   </Link>
