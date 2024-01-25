@@ -6,8 +6,19 @@ import { IoBedOutline } from "react-icons/io5";
 import { MdVerified } from "react-icons/md";
 import { PiBathtub } from "react-icons/pi";
 import { SlSizeFullscreen } from "react-icons/sl";
+import { useState } from "react";
+
+// React Icons
+import { CiLocationOn } from "react-icons/ci";
+import { FaPhoneAlt } from "react-icons/fa";
+
+const pera =
+  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro beatae dolorem officia modi voluptatibus molestiae sapiente dolore tempore, cumque, eligendi nostrum repellendus ullam praesentium, enim ipsam. Ea dolore dolores ut mollitia? Maiores expedita at optio assumenda quae id ipsam itaque velit consequatur porro magnam, corporis in facere illo non. Odit magnam officiis tenetur quam molestias iusto facilis. Quam doloribus ea eaque rem quis corporis debitis, sit reiciendis aliquid error nostrum! Cumque quam repellendus, eligendi eius quisquam vero praesentium sapiente odit delectus quidem nisi magni ea, maiores sequi quibusdam beatae, numquam excepturi maxime. Blanditiis asperiores perferendis repellendus quidem explicabo facilis commodi.";
 
 const PropertyDetails = () => {
+  const [isExpand, setIsExpand] = useState(false);
+  const textLength = pera.length;
+
   return (
     <Box className="flex relative bg-slate-50 min-h-screen">
       <Container>
@@ -17,28 +28,28 @@ const PropertyDetails = () => {
           </Typography>
 
           <Box className="bg-white rounded-xl p-5 shadow-lg mt-5">
-            <div className="mb-5 flex gap-5">
-              <div className="w-[80%]">
+            <div className="mb-5 flex flex-col lg:flex-row gap-5">
+              <div className="lg:w-[80%]">
                 <img
-                  className="w-[100%] h-[450px] object-cover rounded-lg"
+                  className="w-[100%] lg:h-[450px] object-cover rounded-lg"
                   src={property}
                   alt=""
                 />
               </div>
-              <div className="h-[450px] w-[24%] flex flex-col gap-5">
+              <div className="lg:h-[450px] w-[100%] lg:w-[24%] flex flex-row lg:flex-col gap-5">
                 <img
-                  className="w-[100%] h-full object-cover rounded-lg"
+                  className="w-[60%] lg:w-[100%] lg:h-full object-cover rounded-lg"
                   src={property}
                   alt=""
                 />
-                <div className="relative">
+                <div className="relative h-full lg:h-auto">
                   <img
                     className="w-[100%] object-cover rounded-lg brightness-75"
                     src={property}
                     alt=""
                   />
                   <div className="absolute top-0 w-full h-full rounded-lg flex justify-center items-center">
-                    <button className="px-10 py-3 bg-opacity-20 backdrop-blur-lg bg-white text-xl font-semibold rounded-xl text-white">
+                    <button className="px-3 md:px-7 lg:px-10 py-1 md:py-2 lg:py-3 bg-opacity-20 backdrop-blur-lg bg-white text-sm md:text-lg lg:text-xl font-medium lg:font-semibold rounded-md lg:rounded-xl text-white">
                       +20
                     </button>
                   </div>
@@ -46,7 +57,7 @@ const PropertyDetails = () => {
               </div>
             </div>
 
-            <Box className="flex gap-10 items-center">
+            <Box className="flex flex-col md:flex-row gap-10 mt-5">
               <div>
                 <Typography variant="h5">
                   <p className="font-semibold">USD $ 68,000</p>
@@ -76,7 +87,9 @@ const PropertyDetails = () => {
                 </div>
               </div>
 
-              <Divider orientation="vertical" variant="middle" flexItem />
+              <div className="hidden md:flex">
+                <Divider orientation="vertical" variant="middle" />
+              </div>
 
               <div>
                 <div className="flex items-center gap-3">
@@ -85,10 +98,11 @@ const PropertyDetails = () => {
                       <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                     </div>
                   </div>
-                  <div>
+                  <div className="flex items-center gap-2">
                     <Typography variant="h6">
                       <p>Mehedi Hasan</p>
                     </Typography>
+                    <MdVerified className="text-xl text-blue-500" />
                   </div>
                 </div>
                 <Typography variant="body1">
@@ -99,6 +113,68 @@ const PropertyDetails = () => {
 
             <div className="my-5">
               <Divider />
+            </div>
+
+            <div className="flex justify-between items-start">
+              <div className="w-[70%]">
+                <Typography variant="h6">
+                  <p className="font-medium">Property information</p>
+                </Typography>
+                <Typography variant="body1">
+                  <p className="font-medium text-justify mt-3">
+                    {textLength > 200 ? (
+                      <>
+                        {isExpand ? (
+                          <>
+                            {`${pera}`} <br />
+                            <button
+                              className="text-blue-500"
+                              onClick={() => {
+                                setIsExpand(!isExpand);
+                              }}
+                            >
+                              Read Less
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            {`${pera.slice(0, 200)}...`} <br />
+                            <button
+                              className="text-blue-500"
+                              onClick={() => {
+                                setIsExpand(!isExpand);
+                              }}
+                            >
+                              Read More
+                            </button>{" "}
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      `${pera}`
+                    )}
+                  </p>
+                </Typography>
+
+                <button className="px-5 py-3 mt-5 bg-blue-500 hover:bg-blue-600 duration-500 rounded-lg font-semibold text-white leading-tight">
+                  Purches Property
+                </button>
+              </div>
+              <div className="border border-blue-500 rounded-lg p-8 text-left space-y-4">
+                <Typography variant="h5">
+                  <p className="font-medium">Agent Information</p>
+                </Typography>
+                <div>
+                <Typography variant="h6">
+                  <p className="font-semibold text-blue-500">Mehedi Hasan</p>
+                </Typography>
+                <Typography variant="body1">
+                  <p className="flex items-center gap-1 font-medium"><CiLocationOn className="text-lg text-blue-500" /> Dhaka, Bangladesh</p>
+                </Typography>
+                </div>
+
+                <button className="flex items-center gap-2 text-xl px-5 py-2 border border-blue-500 rounded-lg font-semibold hover:bg-blue-500 hover:text-white duration-500"><FaPhoneAlt /> Contact</button>
+              </div>
             </div>
           </Box>
         </Box>
