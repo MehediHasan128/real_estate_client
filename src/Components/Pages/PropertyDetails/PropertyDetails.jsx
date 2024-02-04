@@ -115,8 +115,8 @@ const PropertyDetails = () => {
               <Divider />
             </div>
 
-            <div className="flex justify-between items-start">
-              <div className="w-[70%]">
+            <div className="flex flex-col md:flex-row gap-10 lg:gap-0 justify-between items-start">
+              <div className="md:w-[60%] lg:w-[70%]">
                 <Typography variant="h6">
                   <p className="font-medium">Property information</p>
                 </Typography>
