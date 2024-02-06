@@ -23,15 +23,20 @@ import "react-photo-view/dist/react-photo-view.css";
 import { ThemeProvider } from "@emotion/react";
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import AuthProvider from "./Components/Provider/AuthProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <PhotoProvider>
         <AuthProvider>
-          <RouterProvider router={router} />
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+          </QueryClientProvider>
         </AuthProvider>
       </PhotoProvider>
     </ThemeProvider>

@@ -6,7 +6,6 @@ const PrivetRoute = ({children}) => {
 
     const {loading, user} = useAuthProvider();
     const location = useLocation();
-    console.log(location);
 
     if(loading){
         return <div className="flex justify-center items-center min-h-screen">
