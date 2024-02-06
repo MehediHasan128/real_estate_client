@@ -24,26 +24,9 @@ import { motion } from "framer-motion";
 // Import Logo
 import logo from "../../../../assets/logo.png";
 import useAuthProvider from "../../../Hooks/useAuthProvider";
+import useUserRole from "../../../Hooks/useUserRole";
 
 // navItems
-const routes = [
-  {
-    pathName: "/",
-    routeElement: "Home",
-  },
-  {
-    pathName: "/allProperties",
-    routeElement: "All Properties",
-  },
-  {
-    pathName: "/dashBoard",
-    routeElement: "Dash Board",
-  },
-  {
-    pathName: "/test",
-    routeElement: "Test",
-  },
-];
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -106,6 +89,29 @@ function Navbar() {
   const logoutUser = () =>{
     userLogout()
   }
+
+  const [userRole] = useUserRole();
+  console.log(userRole);
+
+// navItems
+  const routes = [
+    {
+      pathName: "/",
+      routeElement: "Home",
+    },
+    {
+      pathName: "/allProperties",
+      routeElement: "All Properties",
+    },
+    {
+      pathName: (userRole == 'Admin')? '/adminDashBoard' : `${(userRole == 'Agent')? '/agentDashBoard': '/buyerDashBoard'}`,
+      routeElement: "Dash Board",
+    },
+    {
+      pathName: "/test",
+      routeElement: "Test",
+    },
+  ];
 
   return (
     <Box>

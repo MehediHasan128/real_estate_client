@@ -41,7 +41,7 @@ const Profile = () => {
           <div className="mt-10 flex items-center gap-5">
             <div className="avatar relative">
               <div className="w-24 rounded-xl">
-                <img src={user?.photoURL} />
+                <img src={(user?.photoURL)? `${user.photoURL}`: 'http://tinyurl.com/244ny3je'} />
               </div>
               <button
                 onClick={() =>

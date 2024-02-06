@@ -10,6 +10,9 @@ import UserLayout from "../Layout/UserLayout";
 import Profile from "../Pages/UserProfile/Profile/Profile";
 import PrivetRoute from "./PrivetRoute";
 import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
+import AgentProfile from "../Pages/AgentDashBoard/AgentProfile/AgentProfile";
+import BuyerProfile from "../Pages/BuyerDashBoard/BuyerProfile/BuyerProfile";
+import AdminProfile from "../Pages/AdminDashBoard/AdminProfile/AdminProfile";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +45,18 @@ const router = createBrowserRouter([
                 element: <Test />
             }
         ]
+    },
+    {
+        path: '/adminDashBoard',
+        element: <AdminProfile />
+    },
+    {
+        path: '/agentDashBoard',
+        element: <AgentProfile />
+    },
+    {
+        path: '/buyerDashBoard',
+        element: <BuyerProfile />
     },
     {
         path: '/myProfile',
