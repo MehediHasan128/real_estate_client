@@ -86,30 +86,33 @@ function Navbar() {
   const { user, userLogout } = useAuthProvider();
 
   // User logout function
-  const logoutUser = () =>{
-    userLogout()
-  }
+  const logoutUser = () => {
+    userLogout();
+  };
 
   const [userRole] = useUserRole();
-  console.log(userRole);
 
-// navItems
+  // navItems
   const routes = [
     {
       pathName: "/",
       routeElement: "Home",
     },
     {
-      pathName: "/allProperties",
-      routeElement: "All Properties",
-    },
-    {
-      pathName: (userRole == 'Admin')? '/adminDashBoard' : `${(userRole == 'Agent')? '/agentDashBoard': '/buyerDashBoard'}`,
-      routeElement: "Dash Board",
-    },
-    {
-      pathName: "/test",
-      routeElement: "Test",
+      pathName:
+        userRole == "Buyer"
+          ? "/allProperties"
+          : userRole == "Admin"
+          ? "/adminDashBoard"
+          : userRole == "Agent"
+          ? "/agentDashBoard"
+          : '/blog',
+      routeElement:
+        userRole == "Buyer"
+          ? "All Properties"
+          : userRole == "Admin" || userRole == "Agent"
+          ? "Dash Board"
+          : 'Blog',
     },
   ];
 
@@ -220,8 +223,6 @@ function Navbar() {
             <Box>
               <Box>
                 {user ? (
-
-
                   // User account settings
                   <>
                     <Box sx={{ flexGrow: 0 }}>
@@ -282,8 +283,11 @@ function Navbar() {
                         }}
                       >
                         <MenuItem onClick={handleClose}>
-                          <Link to='/myProfile' className="flex items-center gap-2">
-                          <Avatar /> My account
+                          <Link
+                            to="/myProfile"
+                            className="flex items-center gap-2"
+                          >
+                            <Avatar /> My account
                           </Link>
                         </MenuItem>
                         <Divider />
@@ -299,10 +303,12 @@ function Navbar() {
                           </ListItemIcon>
                           Settings
                         </MenuItem>
-                        <MenuItem onClick={() =>{
-                          handleClose()
-                          logoutUser()
-                        }}>
+                        <MenuItem
+                          onClick={() => {
+                            handleClose();
+                            logoutUser();
+                          }}
+                        >
                           <ListItemIcon>
                             <Logout fontSize="small" />
                           </ListItemIcon>
@@ -312,7 +318,6 @@ function Navbar() {
                     </Box>
                   </>
                 ) : (
-
                   // Login button
                   <>
                     <Link to="/login">
