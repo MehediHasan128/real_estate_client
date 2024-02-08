@@ -8,7 +8,6 @@ import useAuthProvider from "../../../Hooks/useAuthProvider";
 const Profile = () => {
 
   const {user} = useAuthProvider();
-  console.log(user);
 
   return (
     <>

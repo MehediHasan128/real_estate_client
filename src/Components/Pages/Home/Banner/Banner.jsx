@@ -20,8 +20,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Autoplay, Pagination, Navigation } from "swiper/modules";
 import SliderImage from "./SliderImage/SliderImage";
 import { Link } from "react-router-dom";
+import useAuthProvider from "../../../Hooks/useAuthProvider";
 
 const Banner = () => {
+
+  const {user} = useAuthProvider();
+  console.log(user);
+
   return (
     <div className="background min-h-screen flex bg-fixed px-5 lg:px-64 pb-24 lg:pb-0">
       <Box className="flex flex-col-reverse lg:flex-row items-center gap-10 lg:gap-20 mt-36">
@@ -81,7 +86,9 @@ const Banner = () => {
                 </Typography>
               </motion.button>
             </Link>
-            <Link to="/register">
+            {
+              user ? null :
+              <Link to="/register">
               <motion.button
                 className="bg-gradient-to-r from-[#7b4397] to-[#dc2430] p-[2px] flex items-center gap-2 rounded-xl"
                 whileHover={{ scale: 1.2 }}
@@ -91,6 +98,7 @@ const Banner = () => {
                 <div className="bg-black px-5 md:px-6 py-3 rounded-xl">Join Us</div>
               </motion.button>
             </Link>
+            }
           </Box>
         </Box>
 

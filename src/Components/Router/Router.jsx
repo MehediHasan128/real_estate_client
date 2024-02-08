@@ -10,9 +10,11 @@ import UserLayout from "../Layout/UserLayout";
 import Profile from "../Pages/UserProfile/Profile/Profile";
 import PrivetRoute from "./PrivetRoute";
 import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
-import AgentProfile from "../Pages/AgentDashBoard/AgentProfile/AgentProfile";
 import BuyerProfile from "../Pages/BuyerDashBoard/BuyerProfile/BuyerProfile";
 import AdminProfile from "../Pages/AdminDashBoard/AdminProfile/AdminProfile";
+import AgentLayout from "../Layout/AgentLayout";
+import AddProperties from "../Pages/AgentDashBoard/AddProperties/AddProperties";
+import AgentProfile from "../Pages/AgentDashBoard/AgentProfile/AgentProfile";
 
 const router = createBrowserRouter([
     {
@@ -52,7 +54,17 @@ const router = createBrowserRouter([
     },
     {
         path: '/agentDashBoard',
-        element: <AgentProfile />
+        element: <AgentLayout />,
+        children: [
+            {
+                path: '/agentDashBoard/agentProfile',
+                element: <AgentProfile />,
+            },
+            {
+                path: '/agentDashBoard/addProperties',
+                element: <AddProperties />
+            }
+        ]
     },
     {
         path: '/buyerDashBoard',
