@@ -1,9 +1,23 @@
 import { Box, Typography } from "@mui/material";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoMdAdd } from "react-icons/io";
+import { FaRegImage } from "react-icons/fa6";
+
 
 const AddProperties = () => {
+    const inputRef = useRef();
+    const [image, setImage] = useState("")
   const { register, handleSubmit } = useForm();
+
+  const handelUploadImage = () =>{
+    inputRef.current.click();
+  }
+
+  const handelImageChange = (event) =>{
+    const file = event.target.files[0];
+    setImage(file)
+  }
 
   const handelAddProperty = (data) => {
     console.log(data);
@@ -47,6 +61,23 @@ const AddProperties = () => {
                   <p>For Rent</p>
                 </Typography>
               </label>
+            </div>
+
+            <div className="flex justify-center items-center border-2 border-blue-400 border-dashed p-2 rounded-lg cursor-pointer min-h-72 w-[100%] overflow-hidden">
+                {
+                    image ? <> <img
+                    onClick={handelUploadImage}
+                    className="lg:w-[40%] object-cover rounded-lg"
+                    src={URL.createObjectURL(image)}
+                    alt=""
+                  /></> : <> <div onClick={handelUploadImage} className="text-center">
+                    <FaRegImage className="text-5xl w-fit mx-auto mb-3" />
+                    <Typography variant="h6">
+                        <p><span className="text-pink-600">Upload a Image</span> or drag and drop <br /> image size upto 20MB</p>
+                    </Typography>
+                    </div></>
+                }
+                <input type="file" ref={inputRef} onChange={handelImageChange} className="hidden" />
             </div>
 
             <div className="flex flex-col md:flex-row justify-between">
