@@ -114,6 +114,10 @@ function Navbar() {
           ? "Dash Board"
           : 'Blog',
     },
+    {
+      pathName: "/test",
+      routeElement: "Test",
+    },
   ];
 
   return (

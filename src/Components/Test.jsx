@@ -1,22 +1,39 @@
-import { Container } from "@mui/material";
-
-const role = 'buyer'
+import { Container, Typography } from "@mui/material";
 
 const Test = () => {
+
   return (
     <div className="bg-gray-200 flex items-center min-h-screen">
-       <Container>
-       <h1 className="border border-red-700 w-full">Body</h1>
+      <Container>
+        <div className="flex justify-center gap-3">
+          <div className="w-[25%]">
+            <label>
+              <Typography variant="body1">
+                <p className="font-semibold">
+                  Country<span className="text-red-600">*</span>
+                </p>
+              </Typography>
+            </label>
 
-       {
-        (role == 'admin')?
-        <><h1>Admin Route</h1></>:<>
-          {
-            (role == 'agent')? <><h1>Agent Route</h1></>:<><h1>Buyer Route</h1></>
-          }
-        </>
-       }
-       </Container>
+            <select className="border px-5 py-3 rounded-md w-[100%] mt-2 focus:outline-1 outline-blue-400">
+              <option value="">Select Country</option>
+            </select>
+          </div>
+          <div className="w-[25%]">
+            <label>
+              <Typography variant="body1">
+                <p className="font-semibold">
+                  State<span className="text-red-600">*</span>
+                </p>
+              </Typography>
+            </label>
+
+            <select className="border px-5 py-3 rounded-md w-[100%] mt-2 focus:outline-1 outline-blue-400">
+              <option value="">Select State</option>
+            </select>
+          </div>
+        </div>
+      </Container>
     </div>
   );
 };
