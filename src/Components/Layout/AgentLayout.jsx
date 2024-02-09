@@ -58,7 +58,7 @@ const AgentLayout = () => {
           <AgentLestSideNav />
         </Box>
 
-        <Box className="w-full p-4 lg:p-3">
+        <Box className="w-full p-4 lg:p-3 min-h-screen">
           <Outlet />
         </Box>
       </Box>
