@@ -83,7 +83,7 @@ function Navbar() {
     </Box>
   );
 
-  const { user, userLogout } = useAuthProvider();
+  const { user, loading, userLogout } = useAuthProvider();
 
   // User logout function
   const logoutUser = () => {
@@ -108,9 +108,9 @@ function Navbar() {
           ? "/agentDashBoard"
           : '/blog',
       routeElement:
-        userRole == "Buyer"
+        (userRole == "Buyer" || loading)
           ? "All Properties"
-          : userRole == "Admin" || userRole == "Agent"
+          : ((userRole == "Admin" || userRole == "Agent") || loading)
           ? "Dash Board"
           : 'Blog',
     },

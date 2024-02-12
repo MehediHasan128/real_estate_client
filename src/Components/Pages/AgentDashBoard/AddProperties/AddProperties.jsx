@@ -55,7 +55,7 @@ const AddProperties = () => {
 
   return (
     <>
-      <Box>
+      <Box className="md:w-[90%] lg:w-[75%] mx-auto">
         <Typography variant="h5">
           <p className="flex items-center gap-3 bg-white p-5 rounded-lg">
             <IoMdAdd className="text-3xl" /> Add New Property
