@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import { IoMdAdd } from "react-icons/io";
 import { FaRegImage } from "react-icons/fa6";
 import axios from "axios";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import useAuthProvider from "../../../Hooks/useAuthProvider";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -12,8 +15,11 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const AddProperties = () => {
   const inputRef = useRef();
   const [image, setImage] = useState("");
-  const [loading, setLoading] = useState(false)
-  const { register, handleSubmit } = useForm();
+  const [loading, setLoading] = useState(false);
+  const axiosPublic = useAxiosPublic();
+  const { register, handleSubmit, reset } = useForm();
+  const {user} = useAuthProvider();
+  console.log(user);
 
   const handelUploadImage = () => {
     inputRef.current.click();
@@ -34,6 +40,9 @@ const AddProperties = () => {
     const totalRoom = room;
     const totalBathroom = bathroom;
     const propertySize = size;
+    const ownerName = user?.displayName;
+    const ownerEmail = user?.email;
+    const ownerImage = user?.photoURL;
 
     const imageFile = inputRef.current.files[0];
     const formData = new FormData();
@@ -47,8 +56,25 @@ const AddProperties = () => {
 
     if(res.data.data.display_url){
       const propertyImage = res.data.data.display_url;
-      const propertyDetails = {advertisementType, propertyImage, propertyTitle, propertyType, propertyDescription, totalRoom, totalBathroom, propertySize, price, country, state};
-      console.log(propertyDetails);
+      const propertyDetails = {advertisementType, propertyImage, propertyTitle, propertyType, propertyDescription, totalRoom, totalBathroom, propertySize, price, country, state, status: 'pending', ownerName, ownerEmail, ownerImage};
+      
+
+
+      // Add property on database
+      axiosPublic.post('/properties', propertyDetails)
+      .then(res =>{
+        if(res.data.insertedId){
+          reset();
+          Swal.fire({
+            icon: "success",
+            title: "Successfully Add Property",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      })
+
+
       setLoading(false)
     }
   };
