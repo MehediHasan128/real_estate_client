@@ -1,6 +1,18 @@
 import { Container, Typography } from "@mui/material";
+import useAuthProvider from "./Hooks/useAuthProvider";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Test = () => {
+
+  const {user} = useAuthProvider();
+  const email = user?.email;
+  useEffect(() =>{
+    axios.get(`http://localhost:5000/properties?email=${email}`)
+    .then(res =>{
+      console.log(res);
+    })
+  },[email])
 
   return (
     <div className="bg-gray-200 flex items-center min-h-screen">
