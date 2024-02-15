@@ -1,8 +1,9 @@
 import { Box, Divider, Typography } from "@mui/material";
-import { FiActivity } from "react-icons/fi";
-import { IoIosLogOut, IoMdStats } from "react-icons/io";
-import { IoHomeOutline, IoLanguage, IoLibrarySharp } from "react-icons/io5";
-import { MdHistory, MdManageAccounts } from "react-icons/md";
+import { FaUsers } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
+import { IoIosLogOut, IoMdAdd } from "react-icons/io";
+import { IoHomeOutline, IoLanguage } from "react-icons/io5";
+import { MdOutlinePendingActions } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 
 import logo from '../../../../assets/logo.png';
@@ -11,34 +12,29 @@ import logo from '../../../../assets/logo.png';
 const accountSettings = [
     {
       route: "/agentDashBoard/agentProfile",
-      icon: <MdManageAccounts className="text-3xl" />,
+      icon: <CgProfile  className="text-3xl" />,
       title: "My Profile",
     },
     {
       route: "/agentDashBoard/addProperties",
-      icon: <FiActivity className="text-3xl" />,
+      icon: <IoMdAdd className="text-3xl" />,
       title: "Add Properties",
     },
     {
-      route: "/language",
+      route: "/agentDashBoard/myProperties",
       icon: <IoLanguage className="text-3xl" />,
       title: "My Properties",
     },
     {
       route: "/statistic",
-      icon: <IoMdStats className="text-3xl" />,
+      icon: <MdOutlinePendingActions className="text-3xl" />,
       title: "Pending Properties",
     },
     {
       route: "/library",
-      icon: <IoLibrarySharp className="text-3xl" />,
+      icon: <FaUsers className="text-3xl" />,
       title: "Client",
-    },
-    {
-      route: "/history",
-      icon: <MdHistory className="text-3xl" />,
-      title: "History",
-    },
+    }
   ];
 
 const AgentLestSideNav = () => {
