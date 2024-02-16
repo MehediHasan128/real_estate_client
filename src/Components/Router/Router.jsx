@@ -16,6 +16,8 @@ import AddProperties from "../Pages/AgentDashBoard/AddProperties/AddProperties";
 import AgentProfile from "../Pages/AgentDashBoard/AgentProfile/AgentProfile";
 import MyProperties from "../Pages/AgentDashBoard/MyProperties/MyProperties";
 import AdminLayout from "../Layout/AdminLayout";
+import AdminProfile from "../Pages/AdminDashBoard/AdminProfile/AdminProfile";
+import Properties from "../Pages/AdminDashBoard/Properties/Properties";
 
 const router = createBrowserRouter([
     {
@@ -57,7 +59,12 @@ const router = createBrowserRouter([
         element: <AdminLayout />,
         children: [
             {
-
+                path: '/adminDashBoard/adminProfile',
+                element: <AdminProfile />
+            },
+            {
+                path: '/adminDashBoard/allProperty',
+                element: <Properties />
             }
         ]
     },
