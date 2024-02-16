@@ -3,35 +3,34 @@ import { FaUsers } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut, IoMdAdd } from "react-icons/io";
 import { IoHomeOutline, IoLanguage } from "react-icons/io5";
+import { MdSupportAgent } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 
 import logo from '../../../../assets/logo.png';
-
+import useAuthProvider from "../../../Hooks/useAuthProvider";
 
 const accountSettings = [
     {
-      route: "/agentDashBoard/agentProfile",
+      route: "/adminDashBoard/adminProfile",
       icon: <CgProfile  className="text-3xl" />,
       title: "My Profile",
     },
     {
-      route: "/agentDashBoard/addProperties",
-      icon: <IoMdAdd className="text-3xl" />,
-      title: "Add Properties",
+      route: "/adminDashBoard/allAgent",
+      icon: <MdSupportAgent className="text-3xl" />,
+      title: "Agent",
     },
     {
-      route: "/agentDashBoard/myProperties",
-      icon: <IoLanguage className="text-3xl" />,
-      title: "My Properties",
-    },
-    {
-      route: "/library",
+      route: "/adminDashBoard/allBuyer",
       icon: <FaUsers className="text-3xl" />,
-      title: "Client",
-    }
+      title: "Buyer",
+    },
   ];
 
-const AgentLestSideNav = () => {
+const AdminLeftSideNav = () => {
+
+    const {user} = useAuthProvider();
+
     return (
         <>
             <Box className="bg-[#303030] min-h-screen lg:fixed">
@@ -51,10 +50,10 @@ const AgentLestSideNav = () => {
           </div>
           <div className="my-5">
             <Typography variant="h6">
-              <p>Mehedi Hasan Bayzid</p>
+              <p>{user?.displayName}</p>
             </Typography>
             <Typography variant="subtitle1">
-              <p className="mt-2 text-sm">mehedihasan12926@gmail.com</p>
+              <p className="mt-2 text-sm">{user?.email}</p>
             </Typography>
           </div>
 
@@ -120,4 +119,4 @@ const AgentLestSideNav = () => {
     );
 };
 
-export default AgentLestSideNav;
+export default AdminLeftSideNav;

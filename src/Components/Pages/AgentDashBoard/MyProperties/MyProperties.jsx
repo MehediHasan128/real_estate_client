@@ -21,9 +21,9 @@ const MyProperties = () => {
         </Box>
 
         {/* Pending Listing */}
-        <Box className="p-5 bg-white rounded-xl mt-10">
+        <Box className="p-5 bg-white rounded-xl mt-10 shadow-xl">
           <Typography variant="h6">
-            <p className="mb-3 text-pink-500">Pending Listing</p>
+            <p className="mb-3 text-pink-500">Pending List</p>
           </Typography>
          
          <PropertyTable filterProperties={pendingProperties} />
@@ -31,9 +31,9 @@ const MyProperties = () => {
 
 
         {/* Active Listing */}
-        <Box className="p-5 bg-white rounded-xl mt-10">
+        <Box className="p-5 bg-white rounded-xl mt-10 shadow-xl">
           <Typography variant="h6">
-            <p className="mb-3 text-pink-500">Active Listing</p>
+            <p className="mb-3 text-green-500">Active List</p>
           </Typography>
          
          <PropertyTable filterProperties={activeProperties} />

@@ -11,11 +11,11 @@ import Profile from "../Pages/UserProfile/Profile/Profile";
 import PrivetRoute from "./PrivetRoute";
 import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
 import BuyerProfile from "../Pages/BuyerDashBoard/BuyerProfile/BuyerProfile";
-import AdminProfile from "../Pages/AdminDashBoard/AdminProfile/AdminProfile";
 import AgentLayout from "../Layout/AgentLayout";
 import AddProperties from "../Pages/AgentDashBoard/AddProperties/AddProperties";
 import AgentProfile from "../Pages/AgentDashBoard/AgentProfile/AgentProfile";
 import MyProperties from "../Pages/AgentDashBoard/MyProperties/MyProperties";
+import AdminLayout from "../Layout/AdminLayout";
 
 const router = createBrowserRouter([
     {
@@ -49,10 +49,21 @@ const router = createBrowserRouter([
             }
         ]
     },
+
+
+    // Admin DashBoard Route
     {
         path: '/adminDashBoard',
-        element: <AdminProfile />
+        element: <AdminLayout />,
+        children: [
+            {
+
+            }
+        ]
     },
+
+
+    // Agent DashBoar Route
     {
         path: '/agentDashBoard',
         element: <AgentLayout />,
