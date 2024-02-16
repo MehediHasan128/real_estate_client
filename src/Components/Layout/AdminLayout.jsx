@@ -56,7 +56,7 @@ const AdminLayout = () => {
 
 
       <Box className="flex justify-center bg-slate-100">
-        <Box className="hidden lg:flex w-[20%]">
+        <Box className="hidden lg:flex w-[15%]">
         <AdminLeftSideNav />
         </Box>
 

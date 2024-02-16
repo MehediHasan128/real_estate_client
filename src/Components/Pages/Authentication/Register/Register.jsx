@@ -27,7 +27,7 @@ const Register = () => {
     const userName = firstName + " " + lastName;
     const userEmail = email;
 
-    const userInfo = { userRole, userName, userEmail };
+    const userInfo = { userRole, userName, userEmail, status: 'inActive' };
 
     if (password == confirmPassword) {
       createUser(email, password).then((userCredential) => {

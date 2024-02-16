@@ -99,7 +99,7 @@ const AddProperties = () => {
                 <input
                   className="cursor-pointer"
                   type="radio"
-                  value="sell"
+                  value="Sell"
                   {...register("addType")}
                 />
                 <Typography variant="h6">
@@ -110,7 +110,7 @@ const AddProperties = () => {
                 <input
                   className="cursor-pointer"
                   type="radio"
-                  value="rent"
+                  value="Rent"
                   {...register("addType")}
                 />
                 <Typography variant="h6">
