@@ -11,6 +11,7 @@ import Paper from "@mui/material/Paper";
 
 import { TiTickOutline } from "react-icons/ti";
 import { MdDelete } from "react-icons/md";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,10 +34,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const Properties = () => {
-  const [allProperty] = useAllProperties();
+  const axiosPublic = useAxiosPublic();
+  const [allProperty, refetch] = useAllProperties();
   const pendingProperty = allProperty.filter(property => property.status == 'pending');
 
 
+  const handelSubmitProperty = (id, propertyStatus) =>{
+    const updatePropertyStatus = {propertyStatus};
+
+    axiosPublic.put(`/properties/${id}`,   updatePropertyStatus)
+    .then(res =>{
+      if(res.data.modifiedCount > 0){
+        refetch();
+      }
+    })
+  }
 
   return (
     <>
@@ -150,10 +162,10 @@ const Properties = () => {
 
                     <StyledTableCell align="center">
                       <div className="flex gap-3">
-                      <button className="bg-gradient-to-r from-[#3ca574] to-[#198391]  px-3 py-2 rounded-lg text-xl text-white hover:scale-110 duration-500">
+                      <button onClick={() => handelSubmitProperty(property._id, 'active')} className="bg-gradient-to-r from-[#3ca574] to-[#198391]  px-3 py-2 rounded-lg text-xl text-white hover:scale-110 duration-500">
                         <TiTickOutline  />
                       </button>
-                      <button className="bg-gradient-to-r from-[#c31432] to-[#6f448f]  px-3 py-2 rounded-lg text-xl text-white hover:scale-110 duration-500">
+                      <button onClick={() => handelSubmitProperty(property._id, 'declined')} className="bg-gradient-to-r from-[#c31432] to-[#6f448f]  px-3 py-2 rounded-lg text-xl text-white hover:scale-110 duration-500">
                         <MdDelete />
                       </button>
                       </div>
