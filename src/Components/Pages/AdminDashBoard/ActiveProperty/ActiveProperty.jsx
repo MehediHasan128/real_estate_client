@@ -77,7 +77,7 @@ const ActiveProperty = ({ filterProperties }) => {
                     <StyledTableCell align="center">
                       <Typography variant="body1">
                         <p className="font-semibold">
-                          {property.state}, {property.country}
+                          {property.propertyTitle}
                         </p>
                       </Typography>
                     </StyledTableCell>
