@@ -5,11 +5,12 @@ import AgentDetailsModal from "../AgentDetailsModal/AgentDetailsModal";
 import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { MdVerified } from "react-icons/md";
 
 const Agent = () => {
   const [selectUser, setSelectUser] = useState([]);
   const axiosPublic = useAxiosPublic();
-  const [allUsers] = useAllUsers();
+  const [allUsers, refetch] = useAllUsers();
 
   const allAgent = allUsers.filter(user => user.userRole == 'Agent')
 
@@ -19,6 +20,16 @@ const Agent = () => {
       document.getElementById("my_modal_5").showModal();
     });
   };
+  
+
+  const handelUpdateAgentStatus = (id, status) =>{
+    axiosPublic.put(`/user/${id}`, {status})
+    .then(res =>{
+      if(res.data.modifiedCount > 0){
+        refetch();
+      }
+    })
+  }
 
   return (
     <>
@@ -48,7 +59,7 @@ const Agent = () => {
 
                     <div className="">
                       <Typography variant="h6">
-                        <p>{user.userName}</p>
+                        <p className="flex items-center gap-2">{user.userName} {user.status == 'verified' ? <MdVerified className="text-blue-500" /> : <></>}</p>
                       </Typography>
                       <Typography variant="body2">
                         <p className="font-semibold text-gray-400 mb-1">
@@ -86,7 +97,7 @@ const Agent = () => {
                       </button>
                     </form>
 
-                    <AgentDetailsModal userInformation={selectUser} />
+                    <AgentDetailsModal userInformation={selectUser} handelUpdateAgentStatus={handelUpdateAgentStatus} refetch={refetch} />
                   </div>
                 </dialog>
               </div>
