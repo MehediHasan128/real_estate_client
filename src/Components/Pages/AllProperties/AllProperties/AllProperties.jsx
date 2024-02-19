@@ -9,6 +9,7 @@ import useAllProperties from "../../../Hooks/useAllProperties";
 
 const AllProperties = () => {
   const [allProperty] = useAllProperties();
+  const activeProperty = allProperty.filter(property => property.status == 'active')
   const printNumber = (num) => {
     console.log(num);
   };
@@ -125,7 +126,7 @@ const AllProperties = () => {
             <>
               <Box className="space-y-3">
                 {
-                  allProperty.map(property => <>
+                  activeProperty.map(property => <>
                     <HorizontalCard
                     key={property._id}
                     img={property.propertyImage}
@@ -144,6 +145,7 @@ const AllProperties = () => {
                     }
                     ownerName={property.ownerName}
                     status={property.status}
+                    id={property._id}
                 />
                   </>)
                 }
@@ -153,7 +155,7 @@ const AllProperties = () => {
             <>
               <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {
-                  allProperty.map(property => <>
+                  activeProperty.map(property => <>
                     <PropertyCard
                     key={property._id}
                   img={property.propertyImage}
@@ -172,6 +174,7 @@ const AllProperties = () => {
                   }
                   ownerName={property.ownerName}
                   status={property.status}
+                  id={property._id}
                 />
                   </>)
                 }

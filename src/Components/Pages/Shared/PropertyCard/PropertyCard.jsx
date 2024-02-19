@@ -8,7 +8,10 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Link } from "react-router-dom";
 
-const PropertyCard = ({img, state, country, title, price, description, bed, bath, size, ownerImg, ownerName, status}) => {
+const PropertyCard = ({id, img, state, country, title, price, description, bed, bath, size, ownerImg, ownerName, status}) => {
+
+  console.log(id);
+
     return (
         <>
             <Box className="cursor-pointer bg-slate-50 rounded-lg p-2 hover:shadow-lg hover:shadow-blue-100 duration-500">
@@ -95,7 +98,7 @@ const PropertyCard = ({img, state, country, title, price, description, bed, bath
                       </Typography>
                     </Box>
                     <Box>
-                      <Link to='/propertyDetails'>
+                      <Link to={`/propertyDetails/${id}`}>
                       <button className="px-3 py-1 rounded-md bg-[#1b1b1b] text-white">
                         Details
                       </button>

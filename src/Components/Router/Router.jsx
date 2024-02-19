@@ -43,8 +43,9 @@ const router = createBrowserRouter([
                 element: <PrivetRoute><AllProperties /></PrivetRoute>
             },
             {
-                path: '/propertyDetails',
-                element: <PropertyDetails />
+                path: '/propertyDetails/:id',
+                element: <PropertyDetails />,
+                loader: ({params}) => fetch(`http://localhost:5000/property/${params.id}`)
             },
             {
                 path: '/test',

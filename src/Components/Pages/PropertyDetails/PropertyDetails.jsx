@@ -1,5 +1,4 @@
 import { Box, Container, Divider, Typography } from "@mui/material";
-import property from "../../../assets/Properties/property1.jpg";
 
 import { GrLocation } from "react-icons/gr";
 import { IoBedOutline } from "react-icons/io5";
@@ -11,11 +10,14 @@ import { useState } from "react";
 // React Icons
 import { CiLocationOn } from "react-icons/ci";
 import { FaPhoneAlt } from "react-icons/fa";
+import { useLoaderData } from "react-router-dom";
 
 const pera =
   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro beatae dolorem officia modi voluptatibus molestiae sapiente dolore tempore, cumque, eligendi nostrum repellendus ullam praesentium, enim ipsam. Ea dolore dolores ut mollitia? Maiores expedita at optio assumenda quae id ipsam itaque velit consequatur porro magnam, corporis in facere illo non. Odit magnam officiis tenetur quam molestias iusto facilis. Quam doloribus ea eaque rem quis corporis debitis, sit reiciendis aliquid error nostrum! Cumque quam repellendus, eligendi eius quisquam vero praesentium sapiente odit delectus quidem nisi magni ea, maiores sequi quibusdam beatae, numquam excepturi maxime. Blanditiis asperiores perferendis repellendus quidem explicabo facilis commodi.";
 
 const PropertyDetails = () => {
+  const property = useLoaderData();
+  const { propertyImage, totalRoom, totalBathroom, propertySize, price, state, country, ownerName, ownerEmail, ownerImage, status } = property;
   const [isExpand, setIsExpand] = useState(false);
   const textLength = pera.length;
 
@@ -32,20 +34,20 @@ const PropertyDetails = () => {
               <div className="lg:w-[80%]">
                 <img
                   className="w-[100%] lg:h-[450px] object-cover rounded-lg"
-                  src={property}
+                  src={propertyImage}
                   alt=""
                 />
               </div>
               <div className="lg:h-[450px] w-[100%] lg:w-[24%] flex flex-row lg:flex-col gap-5">
                 <img
                   className="w-[60%] lg:w-[100%] lg:h-full object-cover rounded-lg"
-                  src={property}
+                  src={propertyImage}
                   alt=""
                 />
                 <div className="relative h-full lg:h-auto">
                   <img
                     className="w-[100%] object-cover rounded-lg brightness-75"
-                    src={property}
+                    src={propertyImage}
                     alt=""
                   />
                   <div className="absolute top-0 w-full h-full rounded-lg flex justify-center items-center">
@@ -60,27 +62,27 @@ const PropertyDetails = () => {
             <Box className="flex flex-col md:flex-row gap-10 mt-5">
               <div>
                 <Typography variant="h5">
-                  <p className="font-semibold">USD $ 68,000</p>
+                  <p className="font-semibold">USD $ {price}</p>
                 </Typography>
                 <Typography variant="body1">
                   <p className="flex items-center gap-1 my-2">
-                    <GrLocation className="text-xl" /> Dhaka, Bangladesh
+                    <GrLocation className="text-xl" /> {state}, {country}
                   </p>
                 </Typography>
                 <div className="flex gap-5">
                   <Typography variant="body1">
                     <p className="flex items-center gap-2 font-medium">
-                      <IoBedOutline className="text-xl text-blue-500" /> 4 Bed
+                      <IoBedOutline className="text-xl text-blue-500" /> {totalRoom} Bed
                     </p>
                   </Typography>
                   <Typography variant="body1">
                     <p className="flex items-center gap-2 font-medium">
-                      <PiBathtub className="text-xl text-blue-500" /> 4 Bath
+                      <PiBathtub className="text-xl text-blue-500" /> {totalBathroom} Bath
                     </p>
                   </Typography>
                   <Typography variant="body1">
                     <p className="flex items-center gap-2 font-medium">
-                      <SlSizeFullscreen className="text-xl text-blue-500" /> 190
+                      <SlSizeFullscreen className="text-xl text-blue-500" /> {propertySize}
                       ft<sup>2</sup>
                     </p>
                   </Typography>
@@ -95,18 +97,20 @@ const PropertyDetails = () => {
                 <div className="flex items-center gap-3">
                   <div className="avatar">
                     <div className="w-12 rounded-full">
-                      <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                      <img src={ownerImage} />
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Typography variant="h6">
-                      <p>Mehedi Hasan</p>
+                      <p>{ownerName}</p>
                     </Typography>
-                    <MdVerified className="text-xl text-blue-500" />
+                   {
+                    status == 'active'? <> <MdVerified className="text-xl text-blue-500" /></> : <></>
+                   }
                   </div>
                 </div>
                 <Typography variant="body1">
-                  <p className="font-medium mt-2">mehediHasan12926@gmail.com</p>
+                  <p className="font-medium mt-2">{ownerEmail}</p>
                 </Typography>
               </div>
             </Box>
@@ -165,15 +169,20 @@ const PropertyDetails = () => {
                   <p className="font-medium">Agent Information</p>
                 </Typography>
                 <div>
-                <Typography variant="h6">
-                  <p className="font-semibold text-blue-500">Mehedi Hasan</p>
-                </Typography>
-                <Typography variant="body1">
-                  <p className="flex items-center gap-1 font-medium"><CiLocationOn className="text-lg text-blue-500" /> Dhaka, Bangladesh</p>
-                </Typography>
+                  <Typography variant="h6">
+                    <p className="font-semibold text-blue-500">{ownerName}</p>
+                  </Typography>
+                  <Typography variant="body1">
+                    <p className="flex items-center gap-1 font-medium">
+                      <CiLocationOn className="text-lg text-blue-500" /> Dhaka,
+                      Bangladesh
+                    </p>
+                  </Typography>
                 </div>
 
-                <button className="flex items-center gap-2 text-xl px-5 py-2 border border-blue-500 rounded-lg font-semibold hover:bg-blue-500 hover:text-white duration-500"><FaPhoneAlt /> Contact</button>
+                <button className="flex items-center gap-2 text-xl px-5 py-2 border border-blue-500 rounded-lg font-semibold hover:bg-blue-500 hover:text-white duration-500">
+                  <FaPhoneAlt /> Contact
+                </button>
               </div>
             </div>
           </Box>
