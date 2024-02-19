@@ -7,6 +7,7 @@ import axios from "axios";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAuthProvider from "../../../Hooks/useAuthProvider";
+import useGetUserStatus from "../../../Hooks/useGetUserStatus";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -19,7 +20,8 @@ const AddProperties = () => {
   const axiosPublic = useAxiosPublic();
   const { register, handleSubmit, reset } = useForm();
   const {user} = useAuthProvider();
-  console.log(user);
+  const [userStatus] = useGetUserStatus();
+  console.log(userStatus);
 
   const handelUploadImage = () => {
     inputRef.current.click();
