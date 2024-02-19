@@ -8,24 +8,27 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Link } from "react-router-dom";
 
-const PropertyCard = ({img, location, title, price, description, bed, bath, size, ownerImg, ownerName}) => {
+const PropertyCard = ({img, state, country, title, price, description, bed, bath, size, ownerImg, ownerName, status}) => {
     return (
         <>
             <Box className="cursor-pointer bg-slate-50 rounded-lg p-2 hover:shadow-lg hover:shadow-blue-100 duration-500">
               {/* Card Image */}
               <div className="relative overflow-hidden rounded-lg">
                 <img
-                  className="object-cover brightness-75 hover:scale-110 duration-700 rounded-lg"
-                  src={img}
+                  className="object-cover h-64 w-full brightness-75 hover:scale-110 duration-700 rounded-lg"
+                  src={img} 
                   alt=""
                 />
                 <Box className="absolute bottom-1 left-1 w-full text-white flex items-center justify-between pr-3">
                   <Typography className="flex items-center">
                     <LocationOnIcon />
-                    <p>{location}</p>
+                    <p>{state}, {country}</p>
                   </Typography>
                   <Typography>
-                    <MdVerified />
+                    {
+                      status == 'active'?
+                      <MdVerified /> : <></>
+                    }
                   </Typography>
                 </Box>
                 <Box

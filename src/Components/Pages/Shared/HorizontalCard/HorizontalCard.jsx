@@ -7,7 +7,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { MdVerified } from "react-icons/md";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
-const HorizontalCard = ({img, location, title, price, description, bed, bath, size, ownerImg, ownerName}) => {
+const HorizontalCard = ({img, state, country, title, price, description, bed, bath, size, ownerImg, ownerName}) => {
     return (
         <>
            <Box className="bg-white p-2 rounded-lg flex">
@@ -77,7 +77,7 @@ const HorizontalCard = ({img, location, title, price, description, bed, bath, si
               </div>
               <Box>
                 <Typography className="flex items-center">
-                  <p>{location}</p>
+                  <p>{state}, {country}</p>
                   <LocationOnIcon />
                 </Typography>
               </Box>

@@ -1,13 +1,14 @@
 import { Box, Container } from "@mui/material";
 import AllPropertiesBanner from "../AllPropertiesBanner/AllPropertiesBanner";
-import img from "../../../../assets/Properties/property1.jpg";
 import PropertyCard from "../../Shared/PropertyCard/PropertyCard";
 import { FaList } from "react-icons/fa";
 import { IoGrid } from "react-icons/io5";
 import { useState } from "react";
 import HorizontalCard from "../../Shared/HorizontalCard/HorizontalCard";
+import useAllProperties from "../../../Hooks/useAllProperties";
 
 const AllProperties = () => {
+  const [allProperty] = useAllProperties();
   const printNumber = (num) => {
     console.log(num);
   };
@@ -123,107 +124,57 @@ const AllProperties = () => {
           {listCard ? (
             <>
               <Box className="space-y-3">
-                <HorizontalCard
-                  img={img}
-                  location={"Dhaka, Bangladesh"}
-                  title={"Luxury House in Greenville"}
-                  price={"860,000"}
-                  description={
-                    "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-                  }
-                  bed={6}
-                  bath={5}
-                  size={190}
-                  ownerImg={
-                    "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
-                  }
-                  ownerName={"Mehedi Hasan"}
+                {
+                  allProperty.map(property => <>
+                    <HorizontalCard
+                    key={property._id}
+                    img={property.propertyImage}
+                    state={property.state}
+                    country={property.country}
+                    title={"Luxury House in Greenville"}
+                    price={property.price}
+                    description={
+                      "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
+                    }
+                    bed={property.totalRoom}
+                    bath={property. totalBathroom}
+                    size={property.propertySize}
+                    ownerImg={
+                      property.ownerImage                    
+                    }
+                    ownerName={property.ownerName}
+                    status={property.status}
                 />
-                <HorizontalCard
-                  img={img}
-                  location={"Dhaka, Bangladesh"}
-                  title={"Luxury House in Greenville"}
-                  price={"860,000"}
-                  description={
-                    "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-                  }
-                  bed={6}
-                  bath={5}
-                  size={190}
-                  ownerImg={
-                    "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
-                  }
-                  ownerName={"Mehedi Hasan"}
-                />
-                <HorizontalCard
-                  img={img}
-                  location={"Dhaka, Bangladesh"}
-                  title={"Luxury House in Greenville"}
-                  price={"860,000"}
-                  description={
-                    "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-                  }
-                  bed={6}
-                  bath={5}
-                  size={190}
-                  ownerImg={
-                    "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
-                  }
-                  ownerName={"Mehedi Hasan"}
-                />
+                  </>)
+                }
               </Box>
             </>
           ) : (
             <>
               <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                <PropertyCard
-                  img={img}
-                  location={"Dhaka, Bangladesh"}
+                {
+                  allProperty.map(property => <>
+                    <PropertyCard
+                    key={property._id}
+                  img={property.propertyImage}
+                  state={property.state}
+                  country={property.country}
                   title={"Luxury House in Greenville"}
-                  price={"860,000"}
+                  price={property.price}
                   description={
                     "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
                   }
-                  bed={6}
-                  bath={5}
-                  size={190}
+                  bed={property.totalRoom}
+                  bath={property. totalBathroom}
+                  size={property.propertySize}
                   ownerImg={
-                    "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
+                    property.ownerImage                    
                   }
-                  ownerName={"Mehedi Hasan"}
+                  ownerName={property.ownerName}
+                  status={property.status}
                 />
-                <PropertyCard
-                  img={img}
-                  location={"Dhaka, Bangladesh"}
-                  title={"Luxury House in Greenville"}
-                  price={"860,000"}
-                  description={
-                    "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-                  }
-                  bed={6}
-                  bath={5}
-                  size={190}
-                  ownerImg={
-                    "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
-                  }
-                  ownerName={"Mehedi Hasan"}
-                />
-                <PropertyCard
-                  img={img}
-                  location={"Dhaka, Bangladesh"}
-                  title={"Luxury House in Greenville"}
-                  price={"860,000"}
-                  description={
-                    "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-                  }
-                  bed={6}
-                  bath={5}
-                  size={190}
-                  ownerImg={
-                    "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
-                  }
-                  ownerName={"Mehedi Hasan"}
-                />
+                  </>)
+                }
               </Box>
             </>
           )}
