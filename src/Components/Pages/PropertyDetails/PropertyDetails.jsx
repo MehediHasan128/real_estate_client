@@ -17,7 +17,7 @@ const pera =
 
 const PropertyDetails = () => {
   const property = useLoaderData();
-  const { propertyImage, totalRoom, totalBathroom, propertySize, price, state, country, ownerName, ownerEmail, ownerImage, status } = property;
+  const { propertyImage, totalRoom, totalBathroom, propertySize, price, state, country, ownerName, ownerEmail, ownerImage, userStatus } = property;
   const [isExpand, setIsExpand] = useState(false);
   const textLength = pera.length;
 
@@ -62,7 +62,7 @@ const PropertyDetails = () => {
             <Box className="flex flex-col md:flex-row gap-10 mt-5">
               <div>
                 <Typography variant="h5">
-                  <p className="font-semibold">USD $ {price}</p>
+                  <p className="font-semibold">USD <span className="text-blue-500">${price}</span></p>
                 </Typography>
                 <Typography variant="body1">
                   <p className="flex items-center gap-1 my-2">
@@ -105,7 +105,7 @@ const PropertyDetails = () => {
                       <p>{ownerName}</p>
                     </Typography>
                    {
-                    status == 'active'? <> <MdVerified className="text-xl text-blue-500" /></> : <></>
+                    userStatus == 'verified'? <> <MdVerified className="text-xl text-blue-500" /></> : <></>
                    }
                   </div>
                 </div>

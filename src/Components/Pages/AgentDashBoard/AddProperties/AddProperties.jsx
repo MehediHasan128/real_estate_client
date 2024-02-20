@@ -21,7 +21,6 @@ const AddProperties = () => {
   const { register, handleSubmit, reset } = useForm();
   const {user} = useAuthProvider();
   const [userStatus] = useGetUserStatus();
-  console.log(userStatus);
 
   const handelUploadImage = () => {
     inputRef.current.click();
@@ -58,7 +57,7 @@ const AddProperties = () => {
 
     if(res.data.data.display_url){
       const propertyImage = res.data.data.display_url;
-      const propertyDetails = {advertisementType, propertyImage, propertyTitle, propertyType, propertyDescription, totalRoom, totalBathroom, propertySize, price, country, state, status: 'pending', ownerName, ownerEmail, ownerImage};
+      const propertyDetails = {advertisementType, propertyImage, propertyTitle, propertyType, propertyDescription, totalRoom, totalBathroom, propertySize, price, country, state, status: 'pending', ownerName, ownerEmail, ownerImage, userStatus};
       
 
 

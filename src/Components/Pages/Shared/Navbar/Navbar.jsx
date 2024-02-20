@@ -119,6 +119,7 @@ function Navbar() {
       routeElement: "Test",
     },
   ];
+  
 
   return (
     <Box>
@@ -241,7 +242,7 @@ function Navbar() {
                         >
                           <Avatar
                             alt="Remy Sharp"
-                            src="/static/images/avatar/2.jpg"
+                            src={user.photoURL}
                           />
                         </IconButton>
                       </Tooltip>
@@ -291,7 +292,7 @@ function Navbar() {
                             to="/myProfile"
                             className="flex items-center gap-2"
                           >
-                            <Avatar /> My account
+                            <Avatar src={user.photoURL} /> My account
                           </Link>
                         </MenuItem>
                         <Divider />

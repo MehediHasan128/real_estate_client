@@ -8,9 +8,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Link } from "react-router-dom";
 
-const PropertyCard = ({id, img, state, country, title, price, description, bed, bath, size, ownerImg, ownerName, status}) => {
+const PropertyCard = ({id, img, state, country, title, price, description, bed, bath, size, ownerImg, ownerName,  userStatus}) => {
 
-  console.log(id);
+  console.log(userStatus);
 
     return (
         <>
@@ -29,7 +29,7 @@ const PropertyCard = ({id, img, state, country, title, price, description, bed, 
                   </Typography>
                   <Typography>
                     {
-                      status == 'active'?
+                      userStatus  == 'verified'?
                       <MdVerified /> : <></>
                     }
                   </Typography>

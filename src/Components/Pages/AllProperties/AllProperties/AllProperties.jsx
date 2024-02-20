@@ -6,10 +6,13 @@ import { IoGrid } from "react-icons/io5";
 import { useState } from "react";
 import HorizontalCard from "../../Shared/HorizontalCard/HorizontalCard";
 import useAllProperties from "../../../Hooks/useAllProperties";
+import noData from "../../../../assets/noData.png";
 
 const AllProperties = () => {
   const [allProperty] = useAllProperties();
-  const activeProperty = allProperty.filter(property => property.status == 'active')
+  const activeProperty = allProperty.filter(
+    (property) => property.status == "active"
+  );
   const printNumber = (num) => {
     console.log(num);
   };
@@ -125,59 +128,75 @@ const AllProperties = () => {
           {listCard ? (
             <>
               <Box className="space-y-3">
-                {
-                  activeProperty.map(property => <>
-                    <HorizontalCard
-                    key={property._id}
-                    img={property.propertyImage}
-                    state={property.state}
-                    country={property.country}
-                    title={"Luxury House in Greenville"}
-                    price={property.price}
-                    description={
-                      "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-                    }
-                    bed={property.totalRoom}
-                    bath={property. totalBathroom}
-                    size={property.propertySize}
-                    ownerImg={
-                      property.ownerImage                    
-                    }
-                    ownerName={property.ownerName}
-                    status={property.status}
-                    id={property._id}
-                />
-                  </>)
-                }
+                {activeProperty.length > 0 ? (
+                  <>
+                    {activeProperty.map((property) => (
+                      <>
+                        <HorizontalCard
+                          key={property._id}
+                          img={property.propertyImage}
+                          state={property.state}
+                          country={property.country}
+                          title={"Luxury House in Greenville"}
+                          price={property.price}
+                          description={
+                            "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
+                          }
+                          bed={property.totalRoom}
+                          bath={property.totalBathroom}
+                          size={property.propertySize}
+                          ownerImg={property.ownerImage}
+                          ownerName={property.ownerName}
+                          status={property.status}
+                          id={property._id}
+                        />
+                      </>
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    <div className="col-span-3 w-[60%] mx-auto">
+                    <img src={noData} alt="" />
+                    </div>
+                  </>
+                )}
               </Box>
             </>
           ) : (
             <>
               <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                {
-                  activeProperty.map(property => <>
-                    <PropertyCard
-                    key={property._id}
-                  img={property.propertyImage}
-                  state={property.state}
-                  country={property.country}
-                  title={"Luxury House in Greenville"}
-                  price={property.price}
-                  description={
-                    "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-                  }
-                  bed={property.totalRoom}
-                  bath={property. totalBathroom}
-                  size={property.propertySize}
-                  ownerImg={
-                    property.ownerImage                    
-                  }
-                  ownerName={property.ownerName}
-                  status={property.status}
-                  id={property._id}
-                />
-                  </>)
-                }
+                {activeProperty.length > 0 ? (
+                  <>
+                    {activeProperty.map((property) => (
+                      <>
+                        <PropertyCard
+                          key={property._id}
+                          img={property.propertyImage}
+                          state={property.state}
+                          country={property.country}
+                          title={"Luxury House in Greenville"}
+                          price={property.price}
+                          description={
+                            "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
+                          }
+                          bed={property.totalRoom}
+                          bath={property.totalBathroom}
+                          size={property.propertySize}
+                          ownerImg={property.ownerImage}
+                          ownerName={property.ownerName}
+                          userStatus={property.userStatus}
+                          id={property._id}
+                        />
+                      </>
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    <div className="col-span-3 w-[60%] mx-auto">
+                    <img src={noData} alt="" />
+                    </div>
+                  </>
+                )}
               </Box>
             </>
           )}
