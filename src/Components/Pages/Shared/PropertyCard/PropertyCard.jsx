@@ -10,8 +10,6 @@ import { Link } from "react-router-dom";
 
 const PropertyCard = ({id, img, state, country, title, price, description, bed, bath, size, ownerImg, ownerName,  userStatus}) => {
 
-  console.log(userStatus);
-
     return (
         <>
             <Box className="cursor-pointer bg-slate-50 rounded-lg p-2 hover:shadow-lg hover:shadow-blue-100 duration-500">

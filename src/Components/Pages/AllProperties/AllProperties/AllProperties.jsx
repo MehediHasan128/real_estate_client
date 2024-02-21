@@ -3,19 +3,53 @@ import AllPropertiesBanner from "../AllPropertiesBanner/AllPropertiesBanner";
 import PropertyCard from "../../Shared/PropertyCard/PropertyCard";
 import { FaList } from "react-icons/fa";
 import { IoGrid } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HorizontalCard from "../../Shared/HorizontalCard/HorizontalCard";
 import useAllProperties from "../../../Hooks/useAllProperties";
 import noData from "../../../../assets/noData.png";
 
+const types = [
+  {
+    type: 'Apartment'
+  },
+  {
+    type: 'Condos'
+  },
+  {
+    type: 'Villas'
+  },
+  {
+    type: 'Offices'
+  },
+  {
+    type: 'Retail'
+  },
+  {
+    type: 'Houses'
+  }
+]
+
 const AllProperties = () => {
   const [allProperty] = useAllProperties();
-  const activeProperty = allProperty.filter(
+  const showProperty = allProperty.filter(
     (property) => property.status == "active"
-  );
+    );
+
+    console.log(showProperty);
+
+    const [activeProperty, setActiveProperty] = useState(showProperty);
+
+    console.log(activeProperty);
+
+
   const printNumber = (num) => {
     console.log(num);
   };
+
+  const handelFilterPropertyType = (type) =>{
+    const filterProperty = showProperty.filter(property => property.propertyType == type);
+    setActiveProperty(filterProperty)
+  }
 
   const [listCard, setListCard] = useState(false);
 
@@ -82,12 +116,9 @@ const AllProperties = () => {
       <Container className="pb-24 pt-10">
         <Box className="flex justify-between px-10 py-5 rounded-md bg-white shadow-md shadow-blue-100 mb-10">
           <Box className="grid grid-cols-3 md:flex gap-5">
-            <h1>Apartment</h1>
-            <h1>Condos</h1>
-            <h1>Villas</h1>
-            <h1>Offices</h1>
-            <h1>Retail</h1>
-            <h1>Houses</h1>
+            {
+              types.map(type => <><button key={type.type} onClick={() => handelFilterPropertyType(type.type)} className="text-lg font-medium hover:text-pink-600 duration-500">{type.type}</button></>)
+            }
           </Box>
           <Box className="hidden md:flex">
             <div className="flex gap-5">
