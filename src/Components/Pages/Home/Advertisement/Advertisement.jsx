@@ -1,14 +1,16 @@
 import { Box, Container, Typography } from "@mui/material";
-// Import Image
-import img from "../../../../assets/Properties/property1.jpg";
 
 import { motion } from "framer-motion";
 
 
 import HeadingText from "../../Shared/HeadingText/HeadingText";
 import PropertyCard from "../../Shared/PropertyCard/PropertyCard";
+import useAllProperties from "../../../Hooks/useAllProperties";
 
 const Advertisement = () => {
+
+  const [allProperty] = useAllProperties();
+  const activeProperties = allProperty.filter(property => property.status == 'active')
 
   return (
     <div className="mb-24">
@@ -16,56 +18,28 @@ const Advertisement = () => {
       <Container>
         <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Card1 */}
-          <PropertyCard
-              img={img}
-              location={"Dhaka, Bangladesh"}
-              title={"Luxury House in Greenville"}
-              price={"860,000"}
-              description={
-                "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-              }
-              bed={6}
-              bath={5}
-              size={190}
-              ownerImg={
-                "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
-              }
-              ownerName={"Mehedi Hasan"}
+         {
+          activeProperties.map(property => <>
+             <PropertyCard
+             key={property._id}
+             img={property.propertyImage}
+             state={property.state}
+             country={property.country}
+             title={"Luxury House in Greenville"}
+             price={property.price}
+             description={
+               "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
+             }
+             bed={property.totalRoom}
+             bath={property.totalBathroom}
+             size={property.propertySize}
+             ownerImg={property.ownerImage}
+             ownerName={property.ownerName}
+             userStatus={property.userStatus}
+             id={property._id}
             />
-          {/* Card2 */}
-          <PropertyCard
-              img={img}
-              location={"Dhaka, Bangladesh"}
-              title={"Luxury House in Greenville"}
-              price={"860,000"}
-              description={
-                "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-              }
-              bed={6}
-              bath={5}
-              size={190}
-              ownerImg={
-                "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
-              }
-              ownerName={"Mehedi Hasan"}
-            />
-          {/* Card3 */}
-          <PropertyCard
-              img={img}
-              location={"Dhaka, Bangladesh"}
-              title={"Luxury House in Greenville"}
-              price={"860,000"}
-              description={
-                "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-              }
-              bed={6}
-              bath={5}
-              size={190}
-              ownerImg={
-                "https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg"
-              }
-              ownerName={"Mehedi Hasan"}
-            />
+          </>)
+         }
         </Box>
         <Box className="mt-10 lg:mt-16 w-fit mx-auto">
           <motion.button

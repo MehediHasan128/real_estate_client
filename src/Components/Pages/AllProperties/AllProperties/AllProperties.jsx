@@ -3,7 +3,7 @@ import AllPropertiesBanner from "../AllPropertiesBanner/AllPropertiesBanner";
 import PropertyCard from "../../Shared/PropertyCard/PropertyCard";
 import { FaList } from "react-icons/fa";
 import { IoGrid } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HorizontalCard from "../../Shared/HorizontalCard/HorizontalCard";
 import useAllProperties from "../../../Hooks/useAllProperties";
 import noData from "../../../../assets/noData.png";
@@ -34,12 +34,8 @@ const AllProperties = () => {
   const showProperty = allProperty.filter(
     (property) => property.status == "active"
     );
-
-    console.log(showProperty);
-
+    
     const [activeProperty, setActiveProperty] = useState(showProperty);
-
-    console.log(activeProperty);
 
 
   const printNumber = (num) => {
