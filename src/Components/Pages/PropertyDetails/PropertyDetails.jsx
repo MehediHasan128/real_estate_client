@@ -11,13 +11,26 @@ import { useState } from "react";
 import { CiLocationOn } from "react-icons/ci";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
+import UserInaformationModal from "../UserProfile/UserInaformationModal/UserInaformationModal";
 
 const pera =
   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro beatae dolorem officia modi voluptatibus molestiae sapiente dolore tempore, cumque, eligendi nostrum repellendus ullam praesentium, enim ipsam. Ea dolore dolores ut mollitia? Maiores expedita at optio assumenda quae id ipsam itaque velit consequatur porro magnam, corporis in facere illo non. Odit magnam officiis tenetur quam molestias iusto facilis. Quam doloribus ea eaque rem quis corporis debitis, sit reiciendis aliquid error nostrum! Cumque quam repellendus, eligendi eius quisquam vero praesentium sapiente odit delectus quidem nisi magni ea, maiores sequi quibusdam beatae, numquam excepturi maxime. Blanditiis asperiores perferendis repellendus quidem explicabo facilis commodi.";
 
 const PropertyDetails = () => {
   const property = useLoaderData();
-  const { propertyImage, totalRoom, totalBathroom, propertySize, price, state, country, ownerName, ownerEmail, ownerImage, userStatus } = property;
+  const {
+    propertyImage,
+    totalRoom,
+    totalBathroom,
+    propertySize,
+    price,
+    state,
+    country,
+    ownerName,
+    ownerEmail,
+    ownerImage,
+    userStatus,
+  } = property;
   const [isExpand, setIsExpand] = useState(false);
   const textLength = pera.length;
 
@@ -62,7 +75,9 @@ const PropertyDetails = () => {
             <Box className="flex flex-col md:flex-row gap-10 mt-5">
               <div>
                 <Typography variant="h5">
-                  <p className="font-semibold">USD <span className="text-blue-500">${price}</span></p>
+                  <p className="font-semibold">
+                    USD <span className="text-blue-500">${price}</span>
+                  </p>
                 </Typography>
                 <Typography variant="body1">
                   <p className="flex items-center gap-1 my-2">
@@ -72,17 +87,20 @@ const PropertyDetails = () => {
                 <div className="flex gap-5">
                   <Typography variant="body1">
                     <p className="flex items-center gap-2 font-medium">
-                      <IoBedOutline className="text-xl text-blue-500" /> {totalRoom} Bed
+                      <IoBedOutline className="text-xl text-blue-500" />{" "}
+                      {totalRoom} Bed
                     </p>
                   </Typography>
                   <Typography variant="body1">
                     <p className="flex items-center gap-2 font-medium">
-                      <PiBathtub className="text-xl text-blue-500" /> {totalBathroom} Bath
+                      <PiBathtub className="text-xl text-blue-500" />{" "}
+                      {totalBathroom} Bath
                     </p>
                   </Typography>
                   <Typography variant="body1">
                     <p className="flex items-center gap-2 font-medium">
-                      <SlSizeFullscreen className="text-xl text-blue-500" /> {propertySize}
+                      <SlSizeFullscreen className="text-xl text-blue-500" />{" "}
+                      {propertySize}
                       ft<sup>2</sup>
                     </p>
                   </Typography>
@@ -104,9 +122,14 @@ const PropertyDetails = () => {
                     <Typography variant="h6">
                       <p>{ownerName}</p>
                     </Typography>
-                   {
-                    userStatus == 'verified'? <> <MdVerified className="text-xl text-blue-500" /></> : <></>
-                   }
+                    {userStatus == "verified" ? (
+                      <>
+                        {" "}
+                        <MdVerified className="text-xl text-blue-500" />
+                      </>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
                 <Typography variant="body1">
@@ -142,7 +165,12 @@ const PropertyDetails = () => {
                           </>
                         ) : (
                           <>
-                            {`${pera.slice(0, 200)}...`} <br />
+                            {`${pera.slice(0, 280)}`}{" "}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#424242] to-[#f0f0f0]">{`${pera.slice(
+                              281,
+                              310
+                            )}`}</span>{" "}
+                            <br />
                             <button
                               className="text-blue-500"
                               onClick={() => {
@@ -160,7 +188,12 @@ const PropertyDetails = () => {
                   </p>
                 </Typography>
 
-                <button className="px-5 py-3 mt-5 bg-blue-500 hover:bg-blue-600 duration-500 rounded-lg font-semibold text-white leading-tight">
+                <button
+                  onClick={() =>
+                    document.getElementById("my_modal_5").showModal()
+                  }
+                  className="px-5 py-3 mt-5 bg-blue-500 hover:bg-blue-600 duration-500 rounded-lg font-semibold text-white leading-tight"
+                >
                   Purches Property
                 </button>
               </div>
@@ -187,6 +220,9 @@ const PropertyDetails = () => {
             </div>
           </Box>
         </Box>
+        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+          <UserInaformationModal />
+        </dialog>
       </Container>
     </Box>
   );

@@ -25,7 +25,6 @@ import useAuthProvider from "../../../Hooks/useAuthProvider";
 const Banner = () => {
 
   const {user} = useAuthProvider();
-  console.log(user);
 
   return (
     <div className="background min-h-screen flex bg-fixed px-5 lg:px-64 pb-24 lg:pb-0">
