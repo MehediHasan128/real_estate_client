@@ -8,6 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { IoSearch } from "react-icons/io5";
+import useClient from "../../../Hooks/useClient";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -29,19 +30,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
 const Client = () => {
+
+  const [clients] = useClient();
+
   return (
     <>
       <Box className="py-5">
@@ -61,7 +53,7 @@ const Client = () => {
             </Typography>
             <div className="bg-pink-200 px-2 rounded-xl">
               <Typography variant="body2">
-                <p className="font-semibold text-pink-700">80</p>
+                <p className="font-semibold text-pink-700">{clients.length}</p>
               </Typography>
             </div>
           </div>
@@ -144,54 +136,73 @@ const Client = () => {
                   <StyledTableCell align="center" colSpan={2}>Client Email</StyledTableCell>
                   <StyledTableCell align="center" colSpan={2}>Property For</StyledTableCell>
                   <StyledTableCell align="center" colSpan={2}>Order Dtate</StyledTableCell>
+                  <StyledTableCell align="center" colSpan={2}>Offer Price ($)</StyledTableCell>
                   <StyledTableCell align="center" colSpan={2}>Action</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
-                  <StyledTableRow key={row.name}>
+                {clients.map((client) => (
+                  <StyledTableRow key={client._id}>
+
                     <StyledTableCell align="center" colSpan={2}>
                       <div className="flex items-center justify-center gap-3">
                         <div className="avatar">
                           <div className="w-14 rounded-full">
-                            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            <img src={client.buyerImage} />
                           </div>
                         </div>
                         <div>
                             <Typography>
-                                <p className="font-semibold">Mehedi Hasan</p>
+                                <p className="font-semibold">{client.buyerName}</p>
                             </Typography>
                             <Typography>
-                                <p className="font-medium">01302557956</p>
+                                <p className="font-medium">{client.buyerPhone}</p>
                             </Typography>
                         </div>
                       </div>
                     </StyledTableCell>
+
                     <StyledTableCell align="center" colSpan={2}>
+                      <div className="text-left w-fit mx-auto">
                       <Typography variant="body1">
-                        <p className="font-medium">Luxury House in Greenville</p>
+                        <p className="font-medium">{client.propertyTitle}</p>
                       </Typography>
+                      <Typography variant="body2">
+                        <p className="font-medium text-blue-600">ID: {client.propertyId}</p>
+                      </Typography>
+                      </div>
                     </StyledTableCell>
+
                     <StyledTableCell align="center" colSpan={2}>
                     <Typography variant="body1">
-                        <p className="font-medium">mehedihasan12926@gmail.com</p>
+                        <p className="font-medium">{client.buyerEmail}</p>
                       </Typography>
                     </StyledTableCell>
+
                     <StyledTableCell align="center" colSpan={2}>
                     <Typography variant="body1">
-                        <p className="font-medium bg-green-200 py-1 rounded-2xl">Sell</p>
+                        <p className={`font-medium py-1 rounded-2xl ${(client.propertyFor == 'Sell')? 'bg-green-100' : 'bg-blue-100 text-blue-900'}`}>{client.propertyFor}</p>
                       </Typography>
                     </StyledTableCell>
+
                     <StyledTableCell align="center" colSpan={2}>
                     <Typography variant="body1">
-                        <p className="font-medium">21, January 2024</p>
+                        <p className="font-medium">{client.orderDate}</p>
                       </Typography>
                     </StyledTableCell>
+
+                    <StyledTableCell align="center" colSpan={2}>
+                    <Typography variant="body1">
+                        <p className="font-medium text-pink-500">${client.offerPrice}</p>
+                      </Typography>
+                    </StyledTableCell>
+
                     <StyledTableCell align="center" colSpan={2}>
                     <Typography variant="body1">
                         <p className="font-medium">Conatct </p>
                       </Typography>
                     </StyledTableCell>
+
                   </StyledTableRow>
                 ))}
               </TableBody>
