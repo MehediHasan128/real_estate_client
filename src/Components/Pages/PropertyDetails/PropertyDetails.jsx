@@ -34,6 +34,9 @@ const PropertyDetails = () => {
   const [isExpand, setIsExpand] = useState(false);
   const textLength = pera.length;
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(!open);
+
   return (
     <Box className="flex relative bg-slate-50 min-h-screen">
       <Container>
@@ -189,13 +192,12 @@ const PropertyDetails = () => {
                 </Typography>
 
                 <button
-                  onClick={() =>
-                    document.getElementById("my_modal_5").showModal()
-                  }
+                  onClick={handleOpen}
                   className="px-5 py-3 mt-5 bg-blue-500 hover:bg-blue-600 duration-500 rounded-lg font-semibold text-white leading-tight"
                 >
                   Purches Property
                 </button>
+                
               </div>
               <div className="border border-blue-500 rounded-lg p-8 text-left space-y-4">
                 <Typography variant="h5">
@@ -220,9 +222,11 @@ const PropertyDetails = () => {
             </div>
           </Box>
         </Box>
-        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-          <UserInaformationModal />
-        </dialog>
+        <UserInaformationModal
+          property={property}
+          open={open}
+          handleOpen={handleOpen}
+        />
       </Container>
     </Box>
   );
