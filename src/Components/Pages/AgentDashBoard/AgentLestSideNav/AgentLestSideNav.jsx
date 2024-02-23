@@ -25,7 +25,7 @@ const accountSettings = [
       title: "My Properties",
     },
     {
-      route: "/library",
+      route: "/agentDashBoard/myClient",
       icon: <FaUsers className="text-3xl" />,
       title: "Client",
     }

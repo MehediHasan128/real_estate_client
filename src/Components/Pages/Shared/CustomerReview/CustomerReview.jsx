@@ -13,7 +13,7 @@ const CustomerReview = ({ customerImg, customerName, reviewItem, review }) => {
             />
             <div>
               <Typography variant="h5">
-                <p className="font-medium mt-3">{customerName}</p>
+                <p className="font-medium mt-3 text-white">{customerName}</p>
               </Typography>
             </div>
           </Box>
