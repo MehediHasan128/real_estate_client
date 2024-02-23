@@ -9,6 +9,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { IoSearch } from "react-icons/io5";
 import useClient from "../../../Hooks/useClient";
+import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { useState } from "react";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,9 +33,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+
+
 const Client = () => {
 
+  const axiosPublic = useAxiosPublic();
+  const {register, handleSubmit} = useForm();
+
   const [clients] = useClient();
+  const [allClients, setAllClients] = useState(clients);
+
+  const handelSearchClient = (data) =>{
+    axiosPublic.get(`/clients/${data.serachID}`)
+    .then(res =>{
+      setAllClients(res.data)
+    })
+  }
 
   return (
     <>
@@ -107,16 +123,17 @@ const Client = () => {
 
         <div className="my-8">
           <div>
-            <form>
+            <form onSubmit={handleSubmit(handelSearchClient)}>
               <div className="relative lg:w-[20%]">
                 <input
+                {...register("serachID")}
                   type="text"
-                  placeholder="Search your client"
+                  placeholder="Search your client by ID"
                   className="bg-blue-gray-50 pl-5 pr-10 py-2 rounded-full w-full focus:outline-purple-600"
                 />
-                <div className=" w-fit absolute top-0 right-0 h-full px-3 flex justify-center items-center rounded-full">
+                <button type="submit" className=" w-fit absolute top-0 right-0 h-full px-3 flex justify-center items-center rounded-full">
                   <IoSearch className="text-2xl text-purple-700" />
-                </div>
+                </button>
               </div>
             </form>
           </div>
@@ -141,7 +158,7 @@ const Client = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {clients.map((client) => (
+                {allClients.map((client) => (
                   <StyledTableRow key={client._id}>
 
                     <StyledTableCell align="center" colSpan={2}>
