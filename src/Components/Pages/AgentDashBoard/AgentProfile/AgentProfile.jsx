@@ -1,5 +1,3 @@
-import property from '../../../../assets/Properties/property1.jpg';
-
 import { Box, Divider, Typography } from "@mui/material";
 import { MdOutlineVerified } from "react-icons/md";
 import {
@@ -15,10 +13,18 @@ import { SlSizeFullscreen } from "react-icons/sl";
 
 import { PieChart } from "@mui/x-charts/PieChart";
 import { LineChart } from "@mui/x-charts/LineChart";
+import useAuthProvider from '../../../Hooks/useAuthProvider';
+import useGetUserStatus from '../../../Hooks/useGetUserStatus';
+import useRecentProperty from '../../../Hooks/useRecentProperty';
 
 const palette = ["#566573 ", "#7710BF", "#BF106A"];
 
 const AgentProfile = () => {
+
+  const {user} = useAuthProvider();
+  const [userStatus] = useGetUserStatus();
+  const [recentProperties] = useRecentProperty();
+
   return (
     <>
       <Box>
@@ -27,15 +33,18 @@ const AgentProfile = () => {
             <Box className="bg-white p-5 md:w-[60%] lg:w-[30%] rounded-lg">
               <div>
                 <div className="avatar">
-                  <div className="w-24 rounded-full">
-                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                  <div className="w-24 lg:w-36 rounded-full">
+                    <img src={(user?.photoURL) ? user.photoURL : 'https://static-00.iconduck.com/assets.00/profile-circle-icon-2048x2048-cqe5466q.png'} />
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <Typography variant="h6">
-                    <p>Mehedi Hasan Bayzid</p>
+                    <p>{user?.displayName}</p>
                   </Typography>
-                  <MdOutlineVerified className="text-xl text-blue-500" />
+                  {
+                    userStatus == 'verified' ?
+                    <MdOutlineVerified className="text-xl text-blue-500" /> : null
+                  }
                 </div>
               </div>
 
@@ -229,58 +238,41 @@ const AgentProfile = () => {
               </Typography>
 
               <Box className="mt-5 flex flex-col md:flex-row gap-5 lg:gap-0 items-center">
-                <div className='flex gap-5'>
-                  <img className='w-[35%] h-52 object-cover rounded-xl' src={property} alt="" />
+                {
+                  recentProperties.slice(0, 2).map(property => <>
+                    <div className='flex gap-5'>
+                  <img className='w-[35%] h-52 object-cover rounded-xl' src={property.propertyImage} alt="" />
                   <div>
-                      <div className='bg-pink-200 p-2 rounded-lg w-fit mb-5'>
+                      <div className={(property.advertisementType == 'Rent')? 'bg-pink-100 p-2 rounded-lg w-fit mb-5' : 'bg-green-100 p-2 rounded-lg w-fit mb-5'}>
                         <Typography variant='body2'>
-                          <p className='text-pink-500 font-semibold'>For Sell</p>
+                          <p className={(property.advertisementType == 'Rent')? 'text-pink-800 font-semibold' : 'text-green-900 font-semibold'}>{property.advertisementType}</p>
                         </Typography>
                       </div>
 
                       <Typography variant='h6'>
-                        <p>Luxury House in Greenville</p>
+                        <p>{property.propertyTitle}</p>
+                      </Typography>
+
+
+                      <Typography variant='body2'>
+                        <p className="mt-2">{property.propertyDescription.slice(0, 50)}</p>
                       </Typography>
 
                       <div className='flex gap-5 mt-3'>
                           <div className='flex items-center gap-2'>
-                            <IoBedOutline /> 5
+                            <IoBedOutline /> {property.totalRoom}
                           </div>
                           <div className='flex items-center gap-2'>
-                            <PiBathtubLight /> 3
+                            <PiBathtubLight /> {property.totalBathroom}
                           </div>
                           <div className='flex items-center gap-2'>
-                            <SlSizeFullscreen /> 190 ft<sup>2</sup>
+                            <SlSizeFullscreen /> {property.propertySize} ft<sup>2</sup>
                           </div>
                       </div>
                   </div>
                 </div>
-                <div className='flex gap-5'>
-                  <img className='w-[35%] h-52 object-cover rounded-xl' src={property} alt="" />
-                  <div>
-                      <div className='bg-pink-200 p-2 rounded-lg w-fit mb-5'>
-                        <Typography variant='body2'>
-                          <p className='text-pink-500 font-semibold'>For Sell</p>
-                        </Typography>
-                      </div>
-
-                      <Typography variant='h6'>
-                        <p>Luxury House in Greenville</p>
-                      </Typography>
-
-                      <div className='flex gap-5 mt-3'>
-                          <div className='flex items-center gap-2'>
-                            <IoBedOutline /> 5
-                          </div>
-                          <div className='flex items-center gap-2'>
-                            <PiBathtubLight /> 3
-                          </div>
-                          <div className='flex items-center gap-2'>
-                            <SlSizeFullscreen /> 190 ft<sup>2</sup>
-                          </div>
-                      </div>
-                  </div>
-                </div>
+                  </>)
+                }
               </Box>
             </Box>
           </Box>

@@ -13,9 +13,6 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import UserInaformationModal from "../UserProfile/UserInaformationModal/UserInaformationModal";
 
-const pera =
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro beatae dolorem officia modi voluptatibus molestiae sapiente dolore tempore, cumque, eligendi nostrum repellendus ullam praesentium, enim ipsam. Ea dolore dolores ut mollitia? Maiores expedita at optio assumenda quae id ipsam itaque velit consequatur porro magnam, corporis in facere illo non. Odit magnam officiis tenetur quam molestias iusto facilis. Quam doloribus ea eaque rem quis corporis debitis, sit reiciendis aliquid error nostrum! Cumque quam repellendus, eligendi eius quisquam vero praesentium sapiente odit delectus quidem nisi magni ea, maiores sequi quibusdam beatae, numquam excepturi maxime. Blanditiis asperiores perferendis repellendus quidem explicabo facilis commodi.";
-
 const PropertyDetails = () => {
   const property = useLoaderData();
   const {
@@ -30,9 +27,10 @@ const PropertyDetails = () => {
     ownerEmail,
     ownerImage,
     userStatus,
+    propertyDescription,
+    propertyTitle
   } = property;
   const [isExpand, setIsExpand] = useState(false);
-  const textLength = pera.length;
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
@@ -42,7 +40,7 @@ const PropertyDetails = () => {
       <Container>
         <Box className="mt-32">
           <Typography variant="h4">
-            <p className="font-medium">Luxury House in Greenville</p>
+            <p className="font-medium">{propertyTitle}</p>
           </Typography>
 
           <Box className="bg-white rounded-xl p-5 shadow-lg mt-5">
@@ -152,11 +150,11 @@ const PropertyDetails = () => {
                 </Typography>
                 <Typography variant="body1">
                   <p className="font-medium text-justify mt-3">
-                    {textLength > 200 ? (
+                    {propertyDescription.length > 200 ? (
                       <>
                         {isExpand ? (
                           <>
-                            {`${pera}`} <br />
+                            {`${propertyDescription}`} <br />
                             <button
                               className="text-blue-500"
                               onClick={() => {
@@ -168,8 +166,8 @@ const PropertyDetails = () => {
                           </>
                         ) : (
                           <>
-                            {`${pera.slice(0, 280)}`}{" "}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#424242] to-[#f0f0f0]">{`${pera.slice(
+                            {`${propertyDescription.slice(0, 280)}`}{" "}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#424242] to-[#f0f0f0]">{`${propertyDescription.slice(
                               281,
                               310
                             )}`}</span>{" "}
@@ -186,7 +184,7 @@ const PropertyDetails = () => {
                         )}
                       </>
                     ) : (
-                      `${pera}`
+                      `${propertyDescription}`
                     )}
                   </p>
                 </Typography>

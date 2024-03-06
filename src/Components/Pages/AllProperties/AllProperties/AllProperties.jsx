@@ -164,7 +164,7 @@ const AllProperties = () => {
                           img={property.propertyImage}
                           state={property.state}
                           country={property.country}
-                          title={"Luxury House in Greenville"}
+                          title={property.propertyTitle}
                           price={property.price}
                           description={
                             "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
@@ -201,7 +201,7 @@ const AllProperties = () => {
                           img={property.propertyImage}
                           state={property.state}
                           country={property.country}
-                          title={"Luxury House in Greenville"}
+                          title={property.propertyTitle}
                           price={property.price}
                           description={
                             "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"

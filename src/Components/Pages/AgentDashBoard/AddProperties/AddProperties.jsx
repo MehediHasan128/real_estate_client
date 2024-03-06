@@ -8,6 +8,7 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAuthProvider from "../../../Hooks/useAuthProvider";
 import useGetUserStatus from "../../../Hooks/useGetUserStatus";
+import moment from "moment";
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -21,6 +22,7 @@ const AddProperties = () => {
   const { register, handleSubmit, reset } = useForm();
   const {user} = useAuthProvider();
   const [userStatus] = useGetUserStatus();
+  const publishDate = moment().format("DD, MMMM YYYY");
 
   const handelUploadImage = () => {
     inputRef.current.click();
@@ -57,7 +59,7 @@ const AddProperties = () => {
 
     if(res.data.data.display_url){
       const propertyImage = res.data.data.display_url;
-      const propertyDetails = {advertisementType, propertyImage, propertyTitle, propertyType, propertyDescription, totalRoom, totalBathroom, propertySize, price, country, state, status: 'pending', ownerName, ownerEmail, ownerImage, userStatus};
+      const propertyDetails = {advertisementType, propertyImage, propertyTitle, propertyType, propertyDescription, totalRoom, totalBathroom, propertySize, price, country, state, status: 'pending', ownerName, ownerEmail, ownerImage, userStatus, publishDate};
       
 
 
@@ -190,6 +192,7 @@ const AddProperties = () => {
                     Select Property Types
                   </option>
                   <option value="Apartment">Apartment</option>
+                  <option value="Cabin">Cabin</option>
                   <option value="Condos">Condos</option>
                   <option value="Villas">Villas</option>
                   <option value="Offices">Offices</option>

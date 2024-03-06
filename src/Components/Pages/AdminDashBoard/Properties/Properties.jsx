@@ -177,7 +177,10 @@ const Properties = () => {
                       <StyledTableCell align="center">
                         <Typography variant="h6">
                           <p className="font-semibold text-pink-700">
-                            $ {property.price}
+                            {/* $ {property.price} */}
+                            {
+                              (property.advertisementType == 'Rent') ? (`$${property.price}/day`) : (`$${property.price}`)
+                            }
                           </p>
                         </Typography>
                       </StyledTableCell>
