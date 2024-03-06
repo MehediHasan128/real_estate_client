@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import AllPropertiesBanner from "../AllPropertiesBanner/AllPropertiesBanner";
 import PropertyCard from "../../Shared/PropertyCard/PropertyCard";
 import { FaList } from "react-icons/fa";
@@ -45,6 +45,11 @@ const AllProperties = () => {
   const handelFilterPropertyType = (type) =>{
     const filterProperty = showProperty.filter(property => property.propertyType == type);
     setActiveProperty(filterProperty)
+  }
+
+  const handelAdvertisementType = (propertyFor) =>{
+    const propertyType = showProperty.filter(property => property.advertisementType == propertyFor);
+    setActiveProperty(propertyType)
   }
 
   const [listCard, setListCard] = useState(false);
@@ -111,11 +116,30 @@ const AllProperties = () => {
       </Box>
       <Container className="pb-24 pt-10">
         <Box className="flex justify-between px-10 py-5 rounded-md bg-white shadow-md shadow-blue-100 mb-10">
+
           <Box className="grid grid-cols-3 md:flex gap-5">
             {
               types.map(type => <><button key={type.type} onClick={() => handelFilterPropertyType(type.type)} className="text-lg font-medium hover:text-pink-600 duration-500">{type.type}</button></>)
             }
           </Box>
+
+          <Box className="flex items-center gap-5">
+
+          <Box>
+            <div className="flex gap-3">
+              <button className="bg-pink-50 px-2 py-1 rounded-md text-pink-800" onClick={() => handelAdvertisementType('Rent')}>
+                <Typography variant="body1">
+                  <p className="font-semibold">Rent</p>
+                </Typography>
+              </button>
+              <button className="bg-green-50 px-2 py-1 rounded-md text-green-700" onClick={() => handelAdvertisementType('Sell')}>
+              <Typography variant="body1">
+                  <p className="font-semibold">Sell</p>
+                </Typography>
+              </button>
+            </div>
+          </Box>
+
           <Box className="hidden md:flex">
             <div className="flex gap-5">
               {listCard ? (
@@ -150,6 +174,9 @@ const AllProperties = () => {
               )}
             </div>
           </Box>
+
+          </Box>
+
         </Box>
         <Box>
           {listCard ? (
@@ -203,9 +230,7 @@ const AllProperties = () => {
                           country={property.country}
                           title={property.propertyTitle}
                           price={property.price}
-                          description={
-                            "This property is mostly wooded and sits high on a hilltop overlooking the Mohawk River Val"
-                          }
+                          description={property.propertyDescription}
                           bed={property.totalRoom}
                           bath={property.totalBathroom}
                           size={property.propertySize}
@@ -213,6 +238,7 @@ const AllProperties = () => {
                           ownerName={property.ownerName}
                           userStatus={property.userStatus}
                           id={property._id}
+                          advertismentFor={property.advertisementType}
                         />
                       </>
                     ))}
