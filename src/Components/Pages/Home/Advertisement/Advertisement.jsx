@@ -14,7 +14,6 @@ const Advertisement = () => {
   const activeProperties = allProperty.filter(property => property.status == 'active');
 
   const [open, setOpen] = useState(false);
-  console.log(open);
 
   return (
     <div className="mb-24">
